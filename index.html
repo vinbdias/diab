@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+    <title>Simulador</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                    <div class="form-group row">
+                        <label for="comprasInternet" class="col-form-label">Compras pela internet</label>
+                        <input onkeyup="simuladorController.formatarValorComprasInternet(event)" onblur="" type="text" value="00,00" class="form-control text-right" name="comprasInternet" id="comprasInternet" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group row">
+                        <label for="custosEducacao" class="col-form-label">Educação</label>
+                        <input onkeyup="simuladorController.formatarValorCustosEducacao(event)" onblur="" type="text" value="00,00" class="form-control text-right" name="custosEducacao" id="custosEducacao" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group row">
+                        <label for="custosFarmacia" class="col-form-label">Farmácia</label>
+                        <input onkeyup="simuladorController.formatarValorCustosFarmacia(event)" onblur="" type="text" value="00,00" class="form-control text-right" name="custosFarmacia" id="custosFarmacia" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group row">
+                        <label for="custosLazer" class="col-form-label">Lazer</label>
+                        <input onkeyup="simuladorController.formatarValorCustosLazer(event)" onblur="" type="text" value="00,00" class="form-control text-right" name="custosLazer" id="custosLazer" />
+                    </div>
+                </div>  
+        </div>  
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        </div>    
+    </div>
+    <!--<script type="text/javascript" src="js/app/helpers/NumeroHelper.js"></script>-->
+    <script type="text/javascript" src="js/app/controllers/SimuladorController.js"></script>    
+    <script>
+
+        var simuladorController = new SimuladorController();  
+    </script>
+</body>
+</html>
