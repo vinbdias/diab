@@ -1,10 +1,14 @@
-import {NumeroHelper} from '../helpers/NumeroHelper';
+'use strict';
 
-export default class SimuladorController {
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-    constructor() {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-        let $ = document.querySelector.bind(document);
+var SimuladorController = function () {
+    function SimuladorController() {
+        _classCallCheck(this, SimuladorController);
+
+        var $ = document.querySelector.bind(document);
 
         this._inputComprasInternet = $('#comprasInternet');
         this._inputCustosEducacao = $('#custosEducacao');
@@ -12,31 +16,40 @@ export default class SimuladorController {
         this._inputCustosLazer = $('#custosLazer');
     }
 
-    formatarValorComprasInternet(event) {
+    _createClass(SimuladorController, [{
+        key: 'formatarValorComprasInternet',
+        value: function formatarValorComprasInternet(event) {
 
-        event.preventDefault();
-        
-        this._inputComprasInternet.value = NumeroHelper.formatarMoeda(this._inputComprasInternet.value);
-    }
+            event.preventDefault();
 
-    formatarValorCustosEducacao(event) {
+            this._inputComprasInternet.value = NumeroHelper.formatarMoeda(this._inputComprasInternet.value);
+        }
+    }, {
+        key: 'formatarValorCustosEducacao',
+        value: function formatarValorCustosEducacao(event) {
 
-        event.preventDefault();
+            event.preventDefault();
 
-        this._inputCustosEducacao.value = NumeroHelper.formatarMoeda(this._inputCustosEducacao.value);
-    }
+            this._inputCustosEducacao.value = NumeroHelper.formatarMoeda(this._inputCustosEducacao.value);
+        }
+    }, {
+        key: 'formatarValorCustosFarmacia',
+        value: function formatarValorCustosFarmacia(event) {
 
-    formatarValorCustosFarmacia(event) {
+            event.preventDefault();
 
-        event.preventDefault();
+            this._inputCustosFarmacia.value = NumeroHelper.formatarMoeda(this._inputCustosFarmacia.value);
+        }
+    }, {
+        key: 'formatarValorCustosLazer',
+        value: function formatarValorCustosLazer(event) {
 
-        this._inputCustosFarmacia.value = NumeroHelper.formatarMoeda(this._inputCustosFarmacia.value);
-    }
+            event.preventDefault();
 
-    formatarValorCustosLazer(event) {
+            this._inputCustosLazer.value = NumeroHelper.formatarMoeda(this._inputCustosLazer.value);
+        }
+    }]);
 
-        event.preventDefault();
-
-        this._inputCustosLazer.value = NumeroHelper.formatarMoeda(this._inputCustosLazer.value);
-    }
-}
+    return SimuladorController;
+}();
+//# sourceMappingURL=SimuladorController.js.map

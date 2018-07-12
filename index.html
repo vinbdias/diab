@@ -7,10 +7,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
     <title>Simulador</title>
+    <style>
+
+        .quiz {
+
+            margin-bottom: 30px;
+        }
+    </style>
 </head>
 <body>
+
     <div class="container">
-        <div class="row">
+        <div class="col-md-12">
+            <h1>Quiz que tipo de consumidor você é?</h1>
+        </div>
+        <div class="row quiz" id="quizView">               
+        </div>
+        <div class="row resultadoQuiz" id="resultadoQuizView"></div>
+        <div class="row simulador" id="simuladorView">
             <div class="col-md-3">
                     <div class="form-group row">
                         <label for="comprasInternet" class="col-form-label">Compras pela internet</label>
@@ -41,12 +55,19 @@
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </div>
         </div>    
-    </div>
-    <!--<script type="text/javascript" src="js/app/helpers/NumeroHelper.js"></script>-->
+    
+    </div>    
+    <script type="text/javascript" src="js/app/helpers/NumeroHelper.js"></script>   
+    <script type="text/javascript" src="js/app/models/Quiz.js"></script>
+    <script type="text/javascript" src="js/app/views/View.js"></script>        
+    <script type="text/javascript" src="js/app/views/QuizView.js"></script>    
+    <script type="text/javascript" src="js/app/views/ResultadoQuizView.js"></script>        
+    <script type="text/javascript" src="js/app/controllers/QuizController.js"></script>    
     <script type="text/javascript" src="js/app/controllers/SimuladorController.js"></script>    
     <script>
 
         var simuladorController = new SimuladorController();  
+        var quizController = new QuizController();
     </script>
 </body>
 </html>
