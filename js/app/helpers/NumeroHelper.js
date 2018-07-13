@@ -13,8 +13,8 @@ var NumeroHelper = function () {
 	}
 
 	_createClass(NumeroHelper, null, [{
-		key: "formatarMoeda",
-		value: function formatarMoeda(valor) {
+		key: "formatarFloatToBRL",
+		value: function formatarFloatToBRL(valor) {
 
 			var v = valor;
 			v = v.replace(/\D/g, ""); //permite digitar apenas números
@@ -23,6 +23,12 @@ var NumeroHelper = function () {
 			v = v.replace(/(\d{1})(\d{5})$/, "$1.$2"); //coloca ponto antes dos últimos 5 digitos
 			v = v.replace(/(\d{1})(\d{1,2})$/, "$1,$2"); //coloca virgula antes dos últimos 2 digitos
 			return v;
+		}
+	}, {
+		key: "formatarBRLToFloat",
+		value: function formatarBRLToFloat(valor) {
+
+			return valor.replace('.', '').replace(',', '.');
 		}
 	}]);
 

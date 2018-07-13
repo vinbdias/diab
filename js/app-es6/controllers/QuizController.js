@@ -10,12 +10,14 @@ class QuizController {
         this._quizView.update(this._quiz);      
         
         this._resultadoQuizView = new ResultadoQuizView($('#resultadoQuizView'));
+
+        this._quizRespostasService = new QuizRespostasService();
     }
 
     submeterRespostas(event) {
 
         event.preventDefault();
-        
+
         this._obterRespostas();
         
         if(!this._validar())
@@ -33,10 +35,12 @@ class QuizController {
             this._inputPergunta9.value,
             this._inputPergunta10.value,
         ];
-        
-        
+
+        //let respostas = ["A", "B", "C", "C", "D", "A", "D", "D", "A", "A"];    
 
         let perfil = this._quiz.calcularPerfil(respostas);
+
+        this._quizRespostasService.gravarRespostas(respostas);
 
         this._resultadoQuizView.update(perfil);        
     }

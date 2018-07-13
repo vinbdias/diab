@@ -14,6 +14,9 @@ var SimuladorController = function () {
         this._inputCustosEducacao = $('#custosEducacao');
         this._inputCustosFarmacia = $('#custosFarmacia');
         this._inputCustosLazer = $('#custosLazer');
+
+        this._simulador = new Simulador();
+        this._resultadoSimuladorView = new this.ResultadoSimuladorView();
     }
 
     _createClass(SimuladorController, [{
@@ -22,7 +25,7 @@ var SimuladorController = function () {
 
             event.preventDefault();
 
-            this._inputComprasInternet.value = NumeroHelper.formatarMoeda(this._inputComprasInternet.value);
+            this._inputComprasInternet.value = NumeroHelper.formatarFloatToBRL(this._inputComprasInternet.value);
         }
     }, {
         key: 'formatarValorCustosEducacao',
@@ -30,7 +33,7 @@ var SimuladorController = function () {
 
             event.preventDefault();
 
-            this._inputCustosEducacao.value = NumeroHelper.formatarMoeda(this._inputCustosEducacao.value);
+            this._inputCustosEducacao.value = NumeroHelper.formatarFloatToBRL(this._inputCustosEducacao.value);
         }
     }, {
         key: 'formatarValorCustosFarmacia',
@@ -38,7 +41,7 @@ var SimuladorController = function () {
 
             event.preventDefault();
 
-            this._inputCustosFarmacia.value = NumeroHelper.formatarMoeda(this._inputCustosFarmacia.value);
+            this._inputCustosFarmacia.value = NumeroHelper.formatarFloatToBRL(this._inputCustosFarmacia.value);
         }
     }, {
         key: 'formatarValorCustosLazer',
@@ -46,7 +49,15 @@ var SimuladorController = function () {
 
             event.preventDefault();
 
-            this._inputCustosLazer.value = NumeroHelper.formatarMoeda(this._inputCustosLazer.value);
+            this._inputCustosLazer.value = NumeroHelper.formatarFloatToBRL(this._inputCustosLazer.value);
+        }
+    }, {
+        key: 'calcularEconomia',
+        value: function calcularEconomia(event) {
+
+            event.preventDefault();
+
+            var economia = this._simulador.calcularEconomia(NumeroHelper.formatarBRLToFloat(this._inputComprasInternet.value), NumeroHelper.formatarBRLToFloat(this._inputCustosEducacao.value), NumeroHelper.formatarBRLToFloat(this._inputCustosFarmacia.value), NumeroHelper.formatarBRLToFloat(this._inputCustosLazer.value));
         }
     }]);
 
