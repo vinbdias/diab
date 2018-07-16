@@ -14,15 +14,15 @@ class QuizService extends HttpService {
             "resposta_8": respostas[7],
             "resposta_9": respostas[8],
             "resposta_10": respostas[9],
-            "perfil": resultadoQuiz.nomePerfil,
+            "perfil": resultadoQuiz.perfil.nomePerfil,
             "pontuacao": resultadoQuiz.pontuacao
-        };
+        };        
 
         return new Promise((resolve, reject) => {
 
             this.post('https://www.anajustra.org.br/api/diab/gravaRespostasQuiz.php', postData)
-                .then((respostas) => resolve(respostas))
-                .catch(() => reject('Não foi possível gravar as respostas do quiz.'));
+                .then((quiz) => resolve(quiz))
+                .catch(() => reject('Não foi possível gravar o quiz.'));
         });
     }
 }

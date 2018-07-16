@@ -1,8 +1,6 @@
 class SimuladorController {
 
-    constructor() {
-
-        let $ = document.querySelector.bind(document);
+    constructor() {        
 
         this._inputComprasInternet = $('#comprasInternet');
         this._inputCustosEducacao = $('#custosEducacao');
@@ -45,12 +43,10 @@ class SimuladorController {
 
         event.preventDefault();
 
-        let economia = this._simulador.calcularEconomia(NumeroHelper.formatarBRLToFloat(this._inputComprasInternet.value),
-                                                        NumeroHelper.formatarBRLToFloat(this._inputCustosEducacao.value),
-                                                        NumeroHelper.formatarBRLToFloat(this._inputCustosFarmacia.value),
-                                                        NumeroHelper.formatarBRLToFloat(this._inputCustosLazer.value));
-
-        console.log(economia);
+        let economia = this._simulador.calcularEconomia(NumeroHelper.parseBRLToFloat(this._inputComprasInternet.value),
+                                                        NumeroHelper.parseBRLToFloat(this._inputCustosEducacao.value),
+                                                        NumeroHelper.parseBRLToFloat(this._inputCustosFarmacia.value),
+                                                        NumeroHelper.parseBRLToFloat(this._inputCustosLazer.value));        
 
         this._resultadoSimuladorView.update(economia);
         

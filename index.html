@@ -13,69 +13,100 @@
 
             margin-bottom: 30px;
         }
+
+        .categoriasConveniosItem:hover, .conveniosCategoriaItem:hover {
+
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="col-md-12">
-            <h1>Quiz que tipo de consumidor você é?</h1>
-        </div>
-        <div class="row quiz" id="quizView">               
-        </div>
-        <div class="row resultadoQuiz" id="resultadoQuizView"></div>
-        <div class="row simulador" id="simuladorView">
-            <div class="col-md-3">
-                    <div class="form-group row">
-                        <label for="comprasInternet" class="col-form-label">Compras pela internet</label>
-                        <input onkeyup="simuladorController.formatarValorComprasInternet(event)" onblur="" type="text" placeholder="00,00" class="form-control text-right" name="comprasInternet" id="comprasInternet" />
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group row">
-                        <label for="custosEducacao" class="col-form-label">Educação</label>
-                        <input onkeyup="simuladorController.formatarValorCustosEducacao(event)" onblur="" type="text" placeholder="00,00" class="form-control text-right" name="custosEducacao" id="custosEducacao" />
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group row">
-                        <label for="custosFarmacia" class="col-form-label">Farmácia</label>
-                        <input onkeyup="simuladorController.formatarValorCustosFarmacia(event)" onblur="" type="text" placeholder="00,00" class="form-control text-right" name="custosFarmacia" id="custosFarmacia" />
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group row">
-                        <label for="custosLazer" class="col-form-label">Lazer</label>
-                        <input onkeyup="simuladorController.formatarValorCustosLazer(event)" onblur="" type="text" placeholder="00,00" class="form-control text-right" name="custosLazer" id="custosLazer" />
-                    </div>
-                </div>  
-        </div>  
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <button onclick="simuladorController.calcularEconomia(event)" type="submit" class="btn btn-primary">Enviar</button>
+        <div id="quiz">
+            <div class="col-md-12">
+                <h1>Quiz que tipo de consumidor você é?</h1>
             </div>
-        </div>    
+            <div class="row quiz" id="quizView">               
+            </div>            
+            <div class="row resultadoQuiz" id="resultadoQuizView"></div> 
+        </div>        
+        <div id="simulador">
+            <div class="row simulador" id="simuladorView">
+                <div class="col-md-3">
+                        <div class="form-group row">
+                            <label for="comprasInternet" class="col-form-label">Compras pela internet</label>
+                            <input onkeyup="simuladorController.formatarValorComprasInternet(event)" onblur="" type="text" placeholder="00,00" class="form-control text-right" name="comprasInternet" id="comprasInternet" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label for="custosEducacao" class="col-form-label">Educação</label>
+                            <input onkeyup="simuladorController.formatarValorCustosEducacao(event)" onblur="" type="text" placeholder="00,00" class="form-control text-right" name="custosEducacao" id="custosEducacao" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label for="custosFarmacia" class="col-form-label">Farmácia</label>
+                            <input onkeyup="simuladorController.formatarValorCustosFarmacia(event)" onblur="" type="text" placeholder="00,00" class="form-control text-right" name="custosFarmacia" id="custosFarmacia" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label for="custosLazer" class="col-form-label">Lazer</label>
+                            <input onkeyup="simuladorController.formatarValorCustosLazer(event)" onblur="" type="text" placeholder="00,00" class="form-control text-right" name="custosLazer" id="custosLazer" />
+                        </div>
+                    </div>  
+                    
+                    <div class="col-md-12 text-center">
+                        <button onclick="simuladorController.calcularEconomia(event)" type="submit" class="btn btn-primary">Enviar</button>
+                    </div>                    
+
+                    <div class="col-md-12 resuladoSimulador" id="resuladoSimuladorView"></div>                    
+            </div>             
+        </div>
+        <div id="convenios">
+            <h1>Categorias</h1>
+            <div class="row categoriasConvenios" id="categoriasConveniosView"></div>
+            <h1>Convênios</h1>
+            <div class="row convenios" id="conveniosView"></div>
+            <h1>Convênio</h1>
+            <div class="row convenio" id="convenioView"></div>
+        </div>
     
-        <div class="row resuladoSimulador" id="resuladoSimuladorView"></div>
+        
     
     </div>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+    crossorigin="anonymous"></script>    
     <script type="text/javascript" src="js/app/services/polyfill/fetch.js"></script> 
     <script type="text/javascript" src="js/app/services/HttpService.js"></script>       
     <script type="text/javascript" src="js/app/services/QuizService.js"></script>       
     <script type="text/javascript" src="js/app/services/ConveniosService.js"></script>  
     <script type="text/javascript" src="js/app/helpers/NumeroHelper.js"></script>   
     <script type="text/javascript" src="js/app/models/Quiz.js"></script>
+    <script type="text/javascript" src="js/app/models/ListaCategoriasConvenios.js"></script>
+    <script type="text/javascript" src="js/app/models/ListaConvenios.js"></script>
     <script type="text/javascript" src="js/app/models/Simulador.js"></script>
     <script type="text/javascript" src="js/app/views/View.js"></script>        
     <script type="text/javascript" src="js/app/views/QuizView.js"></script>
     <script type="text/javascript" src="js/app/views/ResultadoSimuladorView.js"></script>    
     <script type="text/javascript" src="js/app/views/ResultadoQuizView.js"></script>        
+    <script type="text/javascript" src="js/app/views/CategoriasConveniosView.js"></script> 
+    <script type="text/javascript" src="js/app/views/ConveniosView.js"></script> 
+    <script type="text/javascript" src="js/app/views/ConvenioView.js"></script> 
     <script type="text/javascript" src="js/app/controllers/QuizController.js"></script>    
     <script type="text/javascript" src="js/app/controllers/SimuladorController.js"></script>    
+    <script type="text/javascript" src="js/app/controllers/ConveniosController.js"></script>    
     <script>
 
         var simuladorController = new SimuladorController();  
         var quizController = new QuizController();
+        var conveniosController = new ConveniosController(); 
+        $(function() {           
+        });
     </script>
 </body>
 </html>

@@ -1,9 +1,7 @@
 class QuizController {
 
     constructor() {
-
-        let $ = document.querySelector.bind(document);
-
+        
         this._quiz = new Quiz();
 
         this._quizView = new QuizView($('#quizView'));
@@ -18,27 +16,34 @@ class QuizController {
 
         event.preventDefault();
 
-        this._obterRespostas();
+        const teste = false;
+
+        let respostas = [];
+
+        if(!teste) {
+
+            this._obterRespostas();
         
-        if(!this._validar())
-            return false;
-
-        let respostas = [
-            this._inputPergunta1.value,
-            this._inputPergunta2.value,
-            this._inputPergunta3.value,
-            this._inputPergunta4.value,
-            this._inputPergunta5.value,
-            this._inputPergunta6.value,
-            this._inputPergunta7.value,
-            this._inputPergunta8.value,
-            this._inputPergunta9.value,
-            this._inputPergunta10.value,
-        ];
-
-        //let respostas = ["A", "B", "C", "C", "D", "A", "D", "D", "A", "A"];    
-
-        let resultadoQuiz = this._quiz.calcularResultadoQuiz(respostas);
+            if(!this._validar())
+                return false;
+    
+            respostas = [
+                this._inputPergunta1.value,
+                this._inputPergunta2.value,
+                this._inputPergunta3.value,
+                this._inputPergunta4.value,
+                this._inputPergunta5.value,
+                this._inputPergunta6.value,
+                this._inputPergunta7.value,
+                this._inputPergunta8.value,
+                this._inputPergunta9.value,
+                this._inputPergunta10.value,
+            ];
+        }
+        else
+            respostas = ["A", "B", "C", "C", "D", "A", "D", "D", "A", "A"];    
+        
+        let resultadoQuiz = this._quiz.calcularResultadoQuiz(respostas);        
 
         this._quizService.gravarQuiz(respostas, resultadoQuiz);
 

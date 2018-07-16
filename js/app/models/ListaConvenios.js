@@ -1,38 +1,36 @@
-'use strict';
+"use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var View = function () {
-    function View(elemento) {
-        _classCallCheck(this, View);
+var ListaConvenios = function () {
+    function ListaConvenios() {
+        _classCallCheck(this, ListaConvenios);
 
-        if (!elemento) throw new Error('Um elemento do DOM deve ser passado ao construtor da view.');
-
-        this._elemento = elemento;
+        this._convenios = [];
     }
 
-    _createClass(View, [{
-        key: 'template',
-        value: function template() {
+    _createClass(ListaConvenios, [{
+        key: "adiciona",
+        value: function adiciona(convenio) {
 
-            throw new Error('O método template deve ser implementado');
+            this._convenios.push(convenio);
         }
     }, {
-        key: 'update',
-        value: function update(model) {
+        key: "limpa",
+        value: function limpa() {
 
-            this._elemento.html(this.template(model));
+            this._convenios = [];
         }
     }, {
-        key: 'clear',
-        value: function clear() {
+        key: "convenios",
+        get: function get() {
 
-            this._elemento.html('');
+            return [].concat(this._convenios);
         }
     }]);
 
-    return View;
+    return ListaConvenios;
 }();
-//# sourceMappingURL=View.js.map
+//# sourceMappingURL=ListaConvenios.js.map

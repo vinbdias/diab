@@ -37,7 +37,7 @@ var HttpService = function () {
         value: function get(url) {
             var _this = this;
 
-            return fetch(url).then(function (res) {
+            return fetch(url, { method: 'get' }).then(function (res) {
                 return _this._handleErrors(res);
             }).then(function (res) {
                 return res.json();
@@ -57,14 +57,8 @@ var HttpService = function () {
 
             return fetch(url, {
 
-                headers: {
-
-                    'Content-type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                method: 'post',
-                mode: 'cors',
-                body: JSON.stringify(dado)
+                body: JSON.stringify(dado),
+                method: 'post'
             }).then(function (res) {
                 return _this2._handleErrors(res);
             }).then(function (res) {

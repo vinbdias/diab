@@ -21,7 +21,8 @@ var ResultadoQuizView = function (_View) {
         key: "template",
         value: function template(modelo) {
 
-            return "\n        <div class=\"col-md-12\">\n            <h1>" + modelo.nomePerfil + "</h1>\n            <p>" + modelo.textoPerfil + "</p>\n        </div>        \n        ";
+            console.log(modelo);
+            return "\n        <div class=\"col-md-12\">\n            <h1>" + modelo.perfil.nomePerfil + "</h1>\n            <p>" + modelo.perfil.textoPerfil + "</p>\n        </div>        \n        ";
         }
     }]);
 

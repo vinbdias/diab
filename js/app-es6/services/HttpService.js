@@ -20,7 +20,7 @@ class HttpService {
      */
     get(url) {
 
-        return fetch(url)
+        return fetch(url, { method: 'get' })
             .then(res => this._handleErrors(res))
             .then(res => res.json());
     }
@@ -33,15 +33,9 @@ class HttpService {
     post(url, dado) {                
 
         return fetch(url, {
-
-            headers: { 
-
-                'Content-type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },                
-            method: 'post',  
-            mode: 'cors',         
-            body: JSON.stringify(dado)
+                  
+            body: JSON.stringify(dado),
+            method: 'post'
         })
         .then(res => this._handleErrors(res))
         .then(res => res.json());

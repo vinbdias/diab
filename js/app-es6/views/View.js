@@ -2,6 +2,9 @@ class View {
 
     constructor(elemento) {
 
+        if(!elemento)
+            throw new Error('Um elemento do DOM deve ser passado ao construtor da view.');
+
         this._elemento = elemento;
     }
 
@@ -11,7 +14,12 @@ class View {
     }
 
     update(model) {
+        
+        this._elemento.html(this.template(model));
+    }
 
-        this._elemento.innerHTML = this.template(model);
+    clear() {
+
+        this._elemento.html(``);
     }
 }
