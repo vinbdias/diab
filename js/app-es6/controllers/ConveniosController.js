@@ -7,17 +7,19 @@ class ConveniosController {
         this._listaCategoriasConvenios = new ListaCategoriasConvenios();
         this._categoriasConveniosView = new CategoriasConveniosView($('#categoriasConveniosView'));     
 
-        this._listaConvenios = new ListaConvenios();
-        this._conveniosView = new ConveniosView($('#conveniosView'));
+        this._listaCategoriasConvenios = new Bind(
+            new ListaCategoriasConvenios(),
+            new CategoriasConveniosView($('#categoriasConveniosView')),
+            'adiciona');         
 
-        this._convenioView = new ConvenioView($('#convenioView'));
+        this._listaConvenios = new Bind(
+            new ListaConvenios(),
+            new ConveniosView($('#conveniosView')),
+            'adiciona', 'limpa');                  
 
         this._conveniosService.obterCategorias()
-                               .then(categorias => {
-
-                                    categorias.forEach(categoria => this._listaCategoriasConvenios.adiciona(categoria));                                    
-                                    this._categoriasConveniosView.update(this._listaCategoriasConvenios);
-                               });   
+                               .then(categorias => 
+                                        categorias.forEach(categoria => this._listaCategoriasConvenios.adiciona(categoria)));   
                                
         this._convenio = {};
     }
@@ -28,8 +30,7 @@ class ConveniosController {
                               .then(convenios => {
 
                                   this._listaConvenios.limpa();
-                                  convenios.forEach(convenio => this._listaConvenios.adiciona(convenio));                                 
-                                  this._conveniosView.update(this._listaConvenios);                                
+                                  convenios.forEach(convenio => this._listaConvenios.adiciona(convenio));                                                                                                
                               });
     }
 

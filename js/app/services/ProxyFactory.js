@@ -22,6 +22,7 @@ var ProxyFactory = function () {
 
                         return function () {
 
+                            console.log("interceptando " + prop);
                             var retorno = Reflect.apply(target[prop], target, arguments);
                             acao(target);
                             return retorno;
@@ -33,7 +34,7 @@ var ProxyFactory = function () {
                 set: function set(target, prop, value, receiver) {
 
                     var retorno = Reflect.set(target, prop, value, receiver);
-                    if (prop.includes(prop)) acao(target);
+                    if (props.includes(prop)) acao(target);
                     return retorno;
                 }
             });

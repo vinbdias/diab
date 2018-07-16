@@ -15,17 +15,14 @@ var ConveniosController = function () {
         this._listaCategoriasConvenios = new ListaCategoriasConvenios();
         this._categoriasConveniosView = new CategoriasConveniosView($('#categoriasConveniosView'));
 
-        this._listaConvenios = new ListaConvenios();
-        this._conveniosView = new ConveniosView($('#conveniosView'));
+        this._listaCategoriasConvenios = new Bind(new ListaCategoriasConvenios(), new CategoriasConveniosView($('#categoriasConveniosView')), 'adiciona');
 
-        this._convenioView = new ConvenioView($('#convenioView'));
+        this._listaConvenios = new Bind(new ListaConvenios(), new ConveniosView($('#conveniosView')), 'adiciona', 'limpa');
 
         this._conveniosService.obterCategorias().then(function (categorias) {
-
-            categorias.forEach(function (categoria) {
+            return categorias.forEach(function (categoria) {
                 return _this._listaCategoriasConvenios.adiciona(categoria);
             });
-            _this._categoriasConveniosView.update(_this._listaCategoriasConvenios);
         });
 
         this._convenio = {};
@@ -42,7 +39,6 @@ var ConveniosController = function () {
                 convenios.forEach(function (convenio) {
                     return _this2._listaConvenios.adiciona(convenio);
                 });
-                _this2._conveniosView.update(_this2._listaConvenios);
             });
         }
     }, {
