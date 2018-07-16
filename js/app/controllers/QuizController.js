@@ -17,7 +17,7 @@ var QuizController = function () {
 
                 this._resultadoQuizView = new ResultadoQuizView($('#resultadoQuizView'));
 
-                this._quizRespostasService = new QuizRespostasService();
+                this._quizService = new QuizService();
         }
 
         _createClass(QuizController, [{
@@ -34,11 +34,11 @@ var QuizController = function () {
 
                         //let respostas = ["A", "B", "C", "C", "D", "A", "D", "D", "A", "A"];    
 
-                        var perfil = this._quiz.calcularPerfil(respostas);
+                        var resultadoQuiz = this._quiz.calcularResultadoQuiz(respostas);
 
-                        this._quizRespostasService.gravarRespostas(respostas);
+                        this._quizService.gravarQuiz(respostas, resultadoQuiz);
 
-                        this._resultadoQuizView.update(perfil);
+                        this._resultadoQuizView.update(resultadoQuiz);
                 }
         }, {
                 key: '_validar',

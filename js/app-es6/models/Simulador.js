@@ -13,34 +13,40 @@ class Simulador {
         let totalCustos = comprasInternet + custosEducacao + custosFarmacia + custosLazer;
 
         let valorDescontoComprasInternet = comprasInternet * this._descontoComprasInternet;
-        let economiaComprasInternet = comprasInternet - valorDescontoComprasInternet;
+        let comprasInternetDesconto = comprasInternet - valorDescontoComprasInternet;
     
         let valorDescontoEducacao = custosEducacao * this._descontoEducacao;
-        let economiaEducacao = custosEducacao - valorDescontoEducacao;
+        let educacaoDesconto = custosEducacao - valorDescontoEducacao;
 
         let valorDescontoFarmacia = custosFarmacia * this._descontoFarmacia;
-        let economiaFarmacia = custosFarmacia - valorDescontoFarmacia;
+        let farmaciaDesconto = custosFarmacia - valorDescontoFarmacia;
 
-        let valorDescontoLazer = custosLazer * this._descontoLazer.calcularEconomia;
-        let economiaLazer = custosLazer - valorDescontoLazer;
+        let valorDescontoLazer = custosLazer * this._descontoLazer;
+        let lazerDesconto = custosLazer - valorDescontoLazer;
 
-        let economiaTotal = totalCustos - economiaComprasInternet + economiaEducacao + economiaFarmacia + economiaLazer;
+        let totalDesconto = valorDescontoComprasInternet + valorDescontoEducacao + valorDescontoFarmacia + valorDescontoLazer;
+
+        let totalCustosDesconto = totalCustos - totalDesconto;
 
         return {
 
             totalCustos,
 
             valorDescontoComprasInternet,
-            economiaComprasInternet,
+            comprasInternetDesconto,
 
             valorDescontoEducacao,
-            economiaEducacao,
+            educacaoDesconto,
 
             valorDescontoFarmacia,
-            economiaFarmacia,
+            farmaciaDesconto,
 
             valorDescontoLazer,
-            economiaLazer
+            lazerDesconto,
+
+            totalDesconto,
+
+            totalCustosDesconto
         };
     }
 }

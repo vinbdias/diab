@@ -21,34 +21,40 @@ var Simulador = function () {
                         var totalCustos = comprasInternet + custosEducacao + custosFarmacia + custosLazer;
 
                         var valorDescontoComprasInternet = comprasInternet * this._descontoComprasInternet;
-                        var economiaComprasInternet = comprasInternet - valorDescontoComprasInternet;
+                        var comprasInternetDesconto = comprasInternet - valorDescontoComprasInternet;
 
                         var valorDescontoEducacao = custosEducacao * this._descontoEducacao;
-                        var economiaEducacao = custosEducacao - valorDescontoEducacao;
+                        var educacaoDesconto = custosEducacao - valorDescontoEducacao;
 
                         var valorDescontoFarmacia = custosFarmacia * this._descontoFarmacia;
-                        var economiaFarmacia = custosFarmacia - valorDescontoFarmacia;
+                        var farmaciaDesconto = custosFarmacia - valorDescontoFarmacia;
 
-                        var valorDescontoLazer = custosLazer * this._descontoLazer.calcularEconomia;
-                        var economiaLazer = custosLazer - valorDescontoLazer;
+                        var valorDescontoLazer = custosLazer * this._descontoLazer;
+                        var lazerDesconto = custosLazer - valorDescontoLazer;
 
-                        var economiaTotal = totalCustos - economiaComprasInternet + economiaEducacao + economiaFarmacia + economiaLazer;
+                        var totalDesconto = valorDescontoComprasInternet + valorDescontoEducacao + valorDescontoFarmacia + valorDescontoLazer;
+
+                        var totalCustosDesconto = totalCustos - totalDesconto;
 
                         return {
 
                                 totalCustos: totalCustos,
 
                                 valorDescontoComprasInternet: valorDescontoComprasInternet,
-                                economiaComprasInternet: economiaComprasInternet,
+                                comprasInternetDesconto: comprasInternetDesconto,
 
                                 valorDescontoEducacao: valorDescontoEducacao,
-                                economiaEducacao: economiaEducacao,
+                                educacaoDesconto: educacaoDesconto,
 
                                 valorDescontoFarmacia: valorDescontoFarmacia,
-                                economiaFarmacia: economiaFarmacia,
+                                farmaciaDesconto: farmaciaDesconto,
 
                                 valorDescontoLazer: valorDescontoLazer,
-                                economiaLazer: economiaLazer
+                                lazerDesconto: lazerDesconto,
+
+                                totalDesconto: totalDesconto,
+
+                                totalCustosDesconto: totalCustosDesconto
                         };
                 }
         }]);

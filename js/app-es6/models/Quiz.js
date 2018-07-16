@@ -361,35 +361,44 @@ class Quiz {
         ];
     }
 
-    calcularPerfil(respostas) {
-        
+    calcularResultadoQuiz(respostas) {
+                    
         this._respostas = respostas;
 
         let pontuacao = this._calcularPontuacao();
 
-        if(pontuacao >= 90)
-            return this._perfis.find(perfil => {
+        let resultadoQuiz = {
+
+            pontuacao
+        }
+        
+
+        if(pontuacao >= 90) {
+
+            resultadoQuiz.perfil = this._perfis.find(perfil => {
 
                 return perfil.indice == 90;
             });  
+        }
+
             
-        if(pontuacao >= 60 && pontuacao < 90)
-            return this._perfis.find(perfil => {
+        if(pontuacao >= 60 && pontuacao < 90) {
+
+            resultadoQuiz.perfil = this._perfis.find(perfil => {
 
                 return perfil.indice == 60;
             });        
+        }
 
-        if(pontuacao < 60)
-            return this._perfis.find(perfil => {
+        if(pontuacao < 60) {
+
+            resultadoQuiz.perfil = this._perfis.find(perfil => {
 
                 return perfil.indice == 30;
             }); 
+        }
 
-        return {
-
-            "nomePerfil": "Indefinido",
-            "textoPerfil": "Indefinido"                    
-        };            
+        return resultadoQuiz;            
     }
 
     _calcularPontuacao(respostas) {

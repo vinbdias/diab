@@ -28,7 +28,7 @@ var NumeroHelper = function () {
 		key: "formatarBRLToFloat",
 		value: function formatarBRLToFloat(valor) {
 
-			return valor.replace('.', '').replace(',', '.');
+			return parseFloat(valor.replace('.', '').replace(',', '.'));
 		}
 	}]);
 

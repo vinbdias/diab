@@ -16,7 +16,7 @@ var SimuladorController = function () {
         this._inputCustosLazer = $('#custosLazer');
 
         this._simulador = new Simulador();
-        this._resultadoSimuladorView = new this.ResultadoSimuladorView();
+        this._resultadoSimuladorView = new ResultadoSimuladorView($('#resuladoSimuladorView'));
     }
 
     _createClass(SimuladorController, [{
@@ -58,6 +58,10 @@ var SimuladorController = function () {
             event.preventDefault();
 
             var economia = this._simulador.calcularEconomia(NumeroHelper.formatarBRLToFloat(this._inputComprasInternet.value), NumeroHelper.formatarBRLToFloat(this._inputCustosEducacao.value), NumeroHelper.formatarBRLToFloat(this._inputCustosFarmacia.value), NumeroHelper.formatarBRLToFloat(this._inputCustosLazer.value));
+
+            console.log(economia);
+
+            this._resultadoSimuladorView.update(economia);
         }
     }]);
 

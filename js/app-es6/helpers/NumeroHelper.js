@@ -16,7 +16,7 @@ class NumeroHelper {
 
 	static formatarBRLToFloat(valor) {
 
-		return valor.replace('.', '').replace(',', '.');
+		return parseFloat(valor.replace('.', '').replace(',', '.'));
 	}
 
 }

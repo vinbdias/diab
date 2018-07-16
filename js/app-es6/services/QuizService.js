@@ -1,7 +1,8 @@
-class QuizRespostasService extends HttpService {
+class QuizService extends HttpService {
 
-    gravarRespostas(respostas) {
-        let respostasPostData = {
+    gravarQuiz(respostas, resultadoQuiz) {
+
+        let postData = {
 
             "resposta_1": respostas[0],
             "resposta_2": respostas[1],
@@ -12,12 +13,14 @@ class QuizRespostasService extends HttpService {
             "resposta_7": respostas[6],
             "resposta_8": respostas[7],
             "resposta_9": respostas[8],
-            "resposta_10": respostas[9]            
+            "resposta_10": respostas[9],
+            "perfil": resultadoQuiz.nomePerfil,
+            "pontuacao": resultadoQuiz.pontuacao
         };
 
         return new Promise((resolve, reject) => {
 
-            this.post('https://www.anajustra.org.br/api/diab/gravaRespostasQuiz.php', respostasPostData)
+            this.post('https://www.anajustra.org.br/api/diab/gravaRespostasQuiz.php', postData)
                 .then((respostas) => resolve(respostas))
                 .catch(() => reject('Não foi possível gravar as respostas do quiz.'));
         });
