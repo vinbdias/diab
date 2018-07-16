@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -18,12 +18,12 @@ var CategoriasConveniosView = function (_View) {
     }
 
     _createClass(CategoriasConveniosView, [{
-        key: "template",
+        key: 'template',
         value: function template(model) {
 
-            return "\n            <ul>\n                " + model.categorias.map(function (categoria) {
-                return "\n                <li class=\"categoriasConveniosItem\" id=\"categoria" + categoria.ID + "\" onclick=\"conveniosController.listarConveniosPorCategoria(" + categoria.ID + ")\">" + categoria.CATEGORIA + "</li>\n                ";
-            }) + "\n            </ul>\n        ";
+            return '\n            <ul>\n                ' + model.categorias.map(function (categoria) {
+                return '\n                <li class="categoriasConveniosItem" id="categoria' + categoria.ID + '" onclick="conveniosController.listarConveniosPorCategoria(' + categoria.ID + ')">' + categoria.CATEGORIA + '</li>\n                ';
+            }).join('') + '\n            </ul>\n        ';
         }
     }]);
 
