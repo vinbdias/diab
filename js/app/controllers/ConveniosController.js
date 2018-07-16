@@ -26,6 +26,7 @@ var ConveniosController = function () {
         });
 
         this._convenio = {};
+        this._convenioView = new ConvenioView($('#convenioView'));
     }
 
     _createClass(ConveniosController, [{

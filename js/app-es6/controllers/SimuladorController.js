@@ -15,38 +15,38 @@ class SimuladorController {
 
         event.preventDefault();
         
-        this._inputComprasInternet.value = NumeroHelper.formatarFloatToBRL(this._inputComprasInternet.value);
+        this._inputComprasInternet.val(NumeroHelper.formatarFloatToBRL(this._inputComprasInternet.val()));
     }
 
     formatarValorCustosEducacao(event) {
 
         event.preventDefault();
 
-        this._inputCustosEducacao.value = NumeroHelper.formatarFloatToBRL(this._inputCustosEducacao.value);
+        this._inputCustosEducacao.val(NumeroHelper.formatarFloatToBRL(this._inputCustosEducacao.val()));
     }
 
     formatarValorCustosFarmacia(event) {
 
         event.preventDefault();
 
-        this._inputCustosFarmacia.value = NumeroHelper.formatarFloatToBRL(this._inputCustosFarmacia.value);
+        this._inputCustosFarmacia.val(NumeroHelper.formatarFloatToBRL(this._inputCustosFarmacia.val()));
     }
 
     formatarValorCustosLazer(event) {
 
         event.preventDefault();
 
-        this._inputCustosLazer.value = NumeroHelper.formatarFloatToBRL(this._inputCustosLazer.value);
+        this._inputCustosLazer.val(NumeroHelper.formatarFloatToBRL(this._inputCustosLazer.val()));
     }
 
     calcularEconomia(event) {
 
         event.preventDefault();
 
-        let economia = this._simulador.calcularEconomia(NumeroHelper.parseBRLToFloat(this._inputComprasInternet.value),
-                                                        NumeroHelper.parseBRLToFloat(this._inputCustosEducacao.value),
-                                                        NumeroHelper.parseBRLToFloat(this._inputCustosFarmacia.value),
-                                                        NumeroHelper.parseBRLToFloat(this._inputCustosLazer.value));        
+        let economia = this._simulador.calcularEconomia(NumeroHelper.parseBRLToFloat(this._inputComprasInternet.val()),
+                                                        NumeroHelper.parseBRLToFloat(this._inputCustosEducacao.val()),
+                                                        NumeroHelper.parseBRLToFloat(this._inputCustosFarmacia.val()),
+                                                        NumeroHelper.parseBRLToFloat(this._inputCustosLazer.val()));        
 
         this._resultadoSimuladorView.update(economia);
         

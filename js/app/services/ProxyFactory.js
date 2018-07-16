@@ -22,7 +22,6 @@ var ProxyFactory = function () {
 
                         return function () {
 
-                            console.log("interceptando " + prop);
                             var retorno = Reflect.apply(target[prop], target, arguments);
                             acao(target);
                             return retorno;

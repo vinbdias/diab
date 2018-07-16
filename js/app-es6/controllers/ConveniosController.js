@@ -22,6 +22,7 @@ class ConveniosController {
                                         categorias.forEach(categoria => this._listaCategoriasConvenios.adiciona(categoria)));   
                                
         this._convenio = {};
+        this._convenioView = new ConvenioView($('#convenioView'));
     }
 
     listarConveniosPorCategoria(categoriaId) {
