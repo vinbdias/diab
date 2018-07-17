@@ -25,8 +25,7 @@ var ConveniosController = function () {
             });
         });
 
-        this._convenio = {};
-        this._convenioView = new ConvenioView($('#convenioView'));
+        this._convenio = new Bind(new Convenio(), new ConvenioView($('#convenioView')), 'convenio');
     }
 
     _createClass(ConveniosController, [{
@@ -49,8 +48,7 @@ var ConveniosController = function () {
 
             this._conveniosService.obterConvenio(convenioId).then(function (convenio) {
 
-                _this3._convenio = convenio;
-                _this3._convenioView.update(convenio);
+                _this3._convenio.convenio = convenio;
             });
         }
     }]);

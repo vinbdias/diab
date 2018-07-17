@@ -5,7 +5,7 @@ class CategoriasConveniosView extends View {
         return `
             <ul>
                 ${model.categorias.map(categoria => `
-                <li class="categoriasConveniosItem" id="categoria${categoria.ID}" onclick="conveniosController.listarConveniosPorCategoria(${categoria.ID})">${categoria.CATEGORIA}</li>
+                <li class="categoriasConveniosItem" id="categoria${StringHelper.ucWordsSanitizeRemoverEspacosEmBranco(categoria.CATEGORIA)}" onclick="conveniosController.listarConveniosPorCategoria(${categoria.ID})">${categoria.CATEGORIA}</li>
                 `).join('')}
             </ul>
         `;

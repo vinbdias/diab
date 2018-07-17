@@ -21,11 +21,11 @@ var QuizView = function (_View) {
         key: 'template',
         value: function template(model) {
 
-            return '\n            ' + model.perguntas.map(function (pergunta) {
+            return model.perguntas !== undefined ? '\n            ' + model.perguntas.map(function (pergunta) {
                 return '\n            <div class="col-md-12 pergunta" id="pergunta' + pergunta.numero + '">\n                <h3>Pergunta ' + pergunta.numero + ' de 10</h3>\n                <h2>' + pergunta.textoPergunta + '</h2>\n                ' + pergunta.opcoes.map(function (opcao) {
                     return '\n                <div class="radio">\n                    <label for="pergunta' + pergunta.numero + 'Opcao' + opcao.rotulo + '">\n                        ' + opcao.rotulo + ') ' + opcao.textoOpcao + '\n                    </label>&nbsp;\n                    <input type="radio" name="pergunta' + pergunta.numero + '" id="pergunta' + pergunta.numero + 'Opcao' + opcao.rotulo + '" value="' + opcao.rotulo + '">\n                </div>            \n                ';
                 }).join('') + '                                            \n            </div> \n            ';
-            }).join('') + '  \n            <div class="col-md-12 text-center">\n                <button type="submit" class="btn btn-primary" onclick="quizController.submeterRespostas(event)">Enviar</button>\n            </div>               \n        ';
+            }).join('') + '  \n            <div class="col-md-12 text-center">\n                <button type="submit" class="btn btn-primary" onclick="quizController.submeterRespostas(event)">Enviar</button>\n            </div>               \n        ' : '';
         }
     }]);
 

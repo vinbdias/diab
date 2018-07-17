@@ -2,7 +2,7 @@ class QuizView extends View {
 
     template(model) {
 
-        return `
+        return (model.perguntas !== undefined) ? `
             ${model.perguntas.map(pergunta => `
             <div class="col-md-12 pergunta" id="pergunta${pergunta.numero}">
                 <h3>Pergunta ${pergunta.numero} de 10</h3>
@@ -22,6 +22,6 @@ class QuizView extends View {
             <div class="col-md-12 text-center">
                 <button type="submit" class="btn btn-primary" onclick="quizController.submeterRespostas(event)">Enviar</button>
             </div>               
-        `;
+        ` : ``;
     }
 }

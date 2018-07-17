@@ -1,13 +1,12 @@
 class ResultadoQuizView extends View {
 
     template(modelo) {
-        
-        console.log(modelo);
-        return `
+                 
+        return (modelo.resultado !== undefined) ? `
         <div class="col-md-12">
-            <h1>${modelo.perfil.nomePerfil}</h1>
-            <p>${modelo.perfil.textoPerfil}</p>
+            <h1>${modelo.resultado.perfil.nomePerfil}</h1>
+            <p>${modelo.resultado.perfil.textoPerfil}</p>
         </div>        
-        `;
+        ` : ``;
     }
 }

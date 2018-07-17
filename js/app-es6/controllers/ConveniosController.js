@@ -21,8 +21,11 @@ class ConveniosController {
                                .then(categorias => 
                                         categorias.forEach(categoria => this._listaCategoriasConvenios.adiciona(categoria)));   
                                
-        this._convenio = {};
-        this._convenioView = new ConvenioView($('#convenioView'));
+        this._convenio = new Bind(
+            new Convenio(),
+            new ConvenioView($('#convenioView')),
+            'convenio'
+        );        
     }
 
     listarConveniosPorCategoria(categoriaId) {
@@ -40,8 +43,7 @@ class ConveniosController {
         this._conveniosService.obterConvenio(convenioId)
                               .then(convenio => {
 
-                                  this._convenio = convenio;                                  
-                                  this._convenioView.update(convenio);
+                                  this._convenio.convenio = convenio;                                                                  
                               });                              
     }
 }

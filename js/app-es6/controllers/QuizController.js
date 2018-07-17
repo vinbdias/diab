@@ -2,12 +2,20 @@ class QuizController {
 
     constructor() {
         
-        this._quiz = new Quiz();
-
-        this._quizView = new QuizView($('#quizView'));
-        this._quizView.update(this._quiz);      
+        this._quiz = new Bind(
+            new Quiz(),
+            new QuizView($('#quizView')),
+            'perguntas'
+        );
+        this._quiz.perguntas = Perguntas.getPerguntas();
+        this._quiz.perfis = Perfis.getPerfis();
         
-        this._resultadoQuizView = new ResultadoQuizView($('#resultadoQuizView'));
+
+        this._resultadoQuiz = new Bind(
+            new ResultadoQuiz(),
+            new ResultadoQuizView($('#resultadoQuizView')),
+            'resultado'
+        );        
 
         this._quizService = new QuizService();
     }
@@ -16,7 +24,7 @@ class QuizController {
 
         event.preventDefault();
 
-        const teste = false;
+        const teste = true;
 
         let respostas = [];
 
@@ -43,11 +51,9 @@ class QuizController {
         else
             respostas = ["A", "B", "C", "C", "D", "A", "D", "D", "A", "A"];    
         
-        let resultadoQuiz = this._quiz.calcularResultadoQuiz(respostas);        
+        this._resultadoQuiz.resultado = this._quiz.calcularResultadoQuiz(respostas);        
 
-        this._quizService.gravarQuiz(respostas, resultadoQuiz);
-
-        this._resultadoQuizView.update(resultadoQuiz);        
+        this._quizService.gravarQuiz(respostas, this._resultadoQuiz.resultado);              
     }
 
     _validar() {

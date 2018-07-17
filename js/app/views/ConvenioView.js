@@ -21,7 +21,7 @@ var ConvenioView = function (_View) {
         key: "template",
         value: function template(model) {
 
-            return "\n            <h2>" + model.TITULO + "</h2>\n            <p>" + model.CONTEUDO + "</p>\n        ";
+            return model.convenio !== undefined ? "\n            <h2>" + model.convenio.TITULO + "</h2>\n            <div class=\"convenioConteudo\">" + model.convenio.CONTEUDO + "</div>\n        " : "";
         }
     }]);
 

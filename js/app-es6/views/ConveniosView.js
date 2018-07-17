@@ -5,7 +5,7 @@ class ConveniosView extends View {
         return `
             <ul>
                 ${model.convenios.map(convenio => `
-                <li class="conveniosCategoriaItem" id="convenio${convenio.ID}" onclick="conveniosController.mostrarConvenio(${convenio.ID})">${convenio.CONVENIO}</li>
+                <li class="conveniosCategoriaItem" id="convenio${StringHelper.ucWordsSanitizeRemoverEspacosEmBranco(convenio.CONVENIO)}" onclick="conveniosController.mostrarConvenio(${convenio.ID})">${convenio.CONVENIO}</li>
                 `).join('')}
             </ul>
         `;

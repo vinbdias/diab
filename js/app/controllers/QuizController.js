@@ -8,12 +8,11 @@ var QuizController = function () {
     function QuizController() {
         _classCallCheck(this, QuizController);
 
-        this._quiz = new Quiz();
+        this._quiz = new Bind(new Quiz(), new QuizView($('#quizView')), 'perguntas');
+        this._quiz.perguntas = Perguntas.getPerguntas();
+        this._quiz.perfis = Perfis.getPerfis();
 
-        this._quizView = new QuizView($('#quizView'));
-        this._quizView.update(this._quiz);
-
-        this._resultadoQuizView = new ResultadoQuizView($('#resultadoQuizView'));
+        this._resultadoQuiz = new Bind(new ResultadoQuiz(), new ResultadoQuizView($('#resultadoQuizView')), 'resultado');
 
         this._quizService = new QuizService();
     }
@@ -24,7 +23,7 @@ var QuizController = function () {
 
             event.preventDefault();
 
-            var teste = false;
+            var teste = true;
 
             var respostas = [];
 
@@ -37,11 +36,9 @@ var QuizController = function () {
                 respostas = [this._inputPergunta1.value, this._inputPergunta2.value, this._inputPergunta3.value, this._inputPergunta4.value, this._inputPergunta5.value, this._inputPergunta6.value, this._inputPergunta7.value, this._inputPergunta8.value, this._inputPergunta9.value, this._inputPergunta10.value];
             } else respostas = ["A", "B", "C", "C", "D", "A", "D", "D", "A", "A"];
 
-            var resultadoQuiz = this._quiz.calcularResultadoQuiz(respostas);
+            this._resultadoQuiz.resultado = this._quiz.calcularResultadoQuiz(respostas);
 
-            this._quizService.gravarQuiz(respostas, resultadoQuiz);
-
-            this._resultadoQuizView.update(resultadoQuiz);
+            this._quizService.gravarQuiz(respostas, this._resultadoQuiz.resultado);
         }
     }, {
         key: '_validar',

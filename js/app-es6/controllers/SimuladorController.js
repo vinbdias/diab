@@ -8,7 +8,12 @@ class SimuladorController {
         this._inputCustosLazer = $('#custosLazer');
 
         this._simulador = new Simulador();
-        this._resultadoSimuladorView = new ResultadoSimuladorView($('#resuladoSimuladorView'));
+
+        this._resultadoSimulador = new Bind(
+            new ResultadoSimulador(),
+            new ResultadoSimuladorView($('#resultadoSimuladorView')),
+            'resultado'
+        );        
     }
 
     formatarValorComprasInternet(event) {
@@ -43,12 +48,10 @@ class SimuladorController {
 
         event.preventDefault();
 
-        let economia = this._simulador.calcularEconomia(NumeroHelper.parseBRLToFloat(this._inputComprasInternet.val()),
+        this._resultadoSimulador.resultado = this._simulador.calcularEconomia(NumeroHelper.parseBRLToFloat(this._inputComprasInternet.val()),
                                                         NumeroHelper.parseBRLToFloat(this._inputCustosEducacao.val()),
                                                         NumeroHelper.parseBRLToFloat(this._inputCustosFarmacia.val()),
-                                                        NumeroHelper.parseBRLToFloat(this._inputCustosLazer.val()));        
-
-        this._resultadoSimuladorView.update(economia);
+                                                        NumeroHelper.parseBRLToFloat(this._inputCustosLazer.val()));                
         
     }
 }

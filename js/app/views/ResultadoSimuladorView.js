@@ -21,7 +21,7 @@ var ResultadoSimuladorView = function (_View) {
         key: 'template',
         value: function template(modelo) {
 
-            return '\n        <div class="col-md-12">\n            <h1>Economia total de ' + modelo.totalDesconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) + '</h1>            \n        </div>        \n        ';
+            return modelo.resultado !== undefined ? '\n        <div class="col-md-12">\n            <h1>Economia total de ' + modelo.resultado.totalDesconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) + '</h1>            \n        </div>        \n        ' : '';
         }
     }]);
 

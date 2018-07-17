@@ -22,7 +22,7 @@ var ConveniosView = function (_View) {
         value: function template(model) {
 
             return '\n            <ul>\n                ' + model.convenios.map(function (convenio) {
-                return '\n                <li class="conveniosCategoriaItem" id="convenio' + convenio.ID + '" onclick="conveniosController.mostrarConvenio(' + convenio.ID + ')">' + convenio.CONVENIO + '</li>\n                ';
+                return '\n                <li class="conveniosCategoriaItem" id="convenio' + StringHelper.ucWordsSanitizeRemoverEspacosEmBranco(convenio.CONVENIO) + '" onclick="conveniosController.mostrarConvenio(' + convenio.ID + ')">' + convenio.CONVENIO + '</li>\n                ';
             }).join('') + '\n            </ul>\n        ';
         }
     }]);
