@@ -30,7 +30,7 @@ var ConveniosController = function () {
             var _this2 = this;
 
             this._listaConvenios.limpa();
-            this._convenio.limpa();
+            this._convenio.convenio = undefined;
 
             Convenios.getConvenios().forEach(function (convenio) {
                 return convenio.CATEGORIAS.indexOf(categoriaId.toString()) !== -1 ? _this2._listaConvenios.adiciona(convenio) : false;

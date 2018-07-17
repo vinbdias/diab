@@ -30,7 +30,7 @@ class ConveniosController {
     listarConveniosPorCategoria(categoriaId) {
 
         this._listaConvenios.limpa();  
-        this._convenio.limpa();         
+        this._convenio.convenio = undefined;
 
         Convenios.getConvenios()
                  .forEach(convenio => (convenio.CATEGORIAS.indexOf(categoriaId.toString()) !== -1) ? this._listaConvenios.adiciona(convenio) : false);                
