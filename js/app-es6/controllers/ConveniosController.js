@@ -1,8 +1,6 @@
 class ConveniosController {
 
-    constructor() {        
-
-        this._conveniosService = new ConveniosService();
+    constructor() {                
 
         this._listaCategoriasConvenios = new ListaCategoriasConvenios();
         this._categoriasConveniosView = new CategoriasConveniosView($('#categoriasConveniosView'));     
@@ -10,16 +8,17 @@ class ConveniosController {
         this._listaCategoriasConvenios = new Bind(
             new ListaCategoriasConvenios(),
             new CategoriasConveniosView($('#categoriasConveniosView')),
-            'adiciona');         
+            'adiciona'
+        );         
 
         this._listaConvenios = new Bind(
             new ListaConvenios(),
             new ConveniosView($('#conveniosView')),
-            'adiciona', 'limpa');                  
+            'adiciona', 'limpa'
+        );                  
 
-        this._conveniosService.obterCategorias()
-                               .then(categorias => 
-                                        categorias.forEach(categoria => this._listaCategoriasConvenios.adiciona(categoria)));   
+        CategoriasConvenios.getCategorias()
+                           .forEach(categoria => this._listaCategoriasConvenios.adiciona(categoria));
                                
         this._convenio = new Bind(
             new Convenio(),
@@ -30,20 +29,16 @@ class ConveniosController {
 
     listarConveniosPorCategoria(categoriaId) {
 
-        this._conveniosService.obterConveniosPorCategoria(categoriaId)
-                              .then(convenios => {
+        this._listaConvenios.limpa();  
+        this._convenio.limpa();         
 
-                                  this._listaConvenios.limpa();
-                                  convenios.forEach(convenio => this._listaConvenios.adiciona(convenio));                                                                                                
-                              });
+        Convenios.getConvenios()
+                 .forEach(convenio => (convenio.CATEGORIAS.indexOf(categoriaId.toString()) !== -1) ? this._listaConvenios.adiciona(convenio) : false);                
     }
 
     mostrarConvenio(convenioId) {
 
-        this._conveniosService.obterConvenio(convenioId)
-                              .then(convenio => {
-
-                                  this._convenio.convenio = convenio;                                                                  
-                              });                              
+        this._convenio.convenio = Convenios.getConvenios()
+                                           .find(convenio => convenio.ID == convenioId);
     }
 }

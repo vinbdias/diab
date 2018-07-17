@@ -9,4 +9,9 @@ class Convenio {
 
         return this._convenio;
     }
+
+    limpa() {
+
+        this._convenio = undefined;
+    }
 }

@@ -10,6 +10,12 @@ var Convenio = function () {
     }
 
     _createClass(Convenio, [{
+        key: "limpa",
+        value: function limpa() {
+
+            this._convenio = undefined;
+        }
+    }, {
         key: "convenio",
         set: function set(convenio) {
 

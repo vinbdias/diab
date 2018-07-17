@@ -10,8 +10,6 @@ var ConveniosController = function () {
 
         _classCallCheck(this, ConveniosController);
 
-        this._conveniosService = new ConveniosService();
-
         this._listaCategoriasConvenios = new ListaCategoriasConvenios();
         this._categoriasConveniosView = new CategoriasConveniosView($('#categoriasConveniosView'));
 
@@ -19,10 +17,8 @@ var ConveniosController = function () {
 
         this._listaConvenios = new Bind(new ListaConvenios(), new ConveniosView($('#conveniosView')), 'adiciona', 'limpa');
 
-        this._conveniosService.obterCategorias().then(function (categorias) {
-            return categorias.forEach(function (categoria) {
-                return _this._listaCategoriasConvenios.adiciona(categoria);
-            });
+        CategoriasConvenios.getCategorias().forEach(function (categoria) {
+            return _this._listaCategoriasConvenios.adiciona(categoria);
         });
 
         this._convenio = new Bind(new Convenio(), new ConvenioView($('#convenioView')), 'convenio');
@@ -33,22 +29,19 @@ var ConveniosController = function () {
         value: function listarConveniosPorCategoria(categoriaId) {
             var _this2 = this;
 
-            this._conveniosService.obterConveniosPorCategoria(categoriaId).then(function (convenios) {
+            this._listaConvenios.limpa();
+            this._convenio.limpa();
 
-                _this2._listaConvenios.limpa();
-                convenios.forEach(function (convenio) {
-                    return _this2._listaConvenios.adiciona(convenio);
-                });
+            Convenios.getConvenios().forEach(function (convenio) {
+                return convenio.CATEGORIAS.indexOf(categoriaId.toString()) !== -1 ? _this2._listaConvenios.adiciona(convenio) : false;
             });
         }
     }, {
         key: 'mostrarConvenio',
         value: function mostrarConvenio(convenioId) {
-            var _this3 = this;
 
-            this._conveniosService.obterConvenio(convenioId).then(function (convenio) {
-
-                _this3._convenio.convenio = convenio;
+            this._convenio.convenio = Convenios.getConvenios().find(function (convenio) {
+                return convenio.ID == convenioId;
             });
         }
     }]);
