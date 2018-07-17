@@ -10,6 +10,24 @@ var Convenio = function () {
     }
 
     _createClass(Convenio, [{
+        key: "getConvenioPorId",
+        value: function getConvenioPorId(convenioId) {
+
+            return ConveniosDataSource.getConvenios().find(function (convenio) {
+                return convenio.ID == convenioId;
+            });
+        }
+    }, {
+        key: "getConveniosPorCategoriaId",
+        value: function getConveniosPorCategoriaId(categoriaId) {
+            var convenios = [];
+            ConveniosDataSource.getConvenios().forEach(function (convenio) {
+                return convenio.CATEGORIAS.indexOf(categoriaId.toString()) !== -1 ? convenios.push(convenio) : false;
+            });
+
+            return convenios;
+        }
+    }, {
         key: "convenio",
         set: function set(convenio) {
 

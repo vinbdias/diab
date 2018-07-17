@@ -19,6 +19,10 @@ var ListaCategoriasConvenios = function () {
         }
     }, {
         key: "categorias",
+        set: function set(categorias) {
+
+            if (Array.isArray(categorias)) this._categorias = categorias;
+        },
         get: function get() {
 
             return [].concat(this._categorias);

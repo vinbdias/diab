@@ -4,37 +4,19 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var ListaConvenios = function () {
-    function ListaConvenios() {
-        _classCallCheck(this, ListaConvenios);
-
-        this._convenios = [];
+var CategoriaConvenio = function () {
+    function CategoriaConvenio() {
+        _classCallCheck(this, CategoriaConvenio);
     }
 
-    _createClass(ListaConvenios, [{
-        key: "adiciona",
-        value: function adiciona(convenio) {
+    _createClass(CategoriaConvenio, [{
+        key: "getCategorias",
+        value: function getCategorias() {
 
-            this._convenios.push(convenio);
-        }
-    }, {
-        key: "limpa",
-        value: function limpa() {
-
-            this._convenios = [];
-        }
-    }, {
-        key: "convenios",
-        set: function set(convenios) {
-
-            if (Array.isArray(convenios)) this._convenios = convenios;
-        },
-        get: function get() {
-
-            return [].concat(this._convenios);
+            return CategoriasConveniosDataSource.getCategorias();
         }
     }]);
 
-    return ListaConvenios;
+    return CategoriaConvenio;
 }();
-//# sourceMappingURL=ListaConvenios.js.map
+//# sourceMappingURL=CategoriaConvenio.js.map

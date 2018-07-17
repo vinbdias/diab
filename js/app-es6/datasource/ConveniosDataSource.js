@@ -1,4 +1,4 @@
-class Convenios {
+class ConveniosDataSource {
 
     static getConvenios() {
 

@@ -1,4 +1,4 @@
-class Perfis {
+class PerfisDataSource {
 
     static getPerfis() {
 

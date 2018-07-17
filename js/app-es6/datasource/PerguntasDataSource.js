@@ -1,4 +1,4 @@
-class Perguntas {
+class PerguntasDataSource {
 
     static getPerguntas() {
 

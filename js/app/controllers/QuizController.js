@@ -9,8 +9,8 @@ var QuizController = function () {
         _classCallCheck(this, QuizController);
 
         this._quiz = new Bind(new Quiz(), new QuizView($('#quizView')), 'perguntas');
-        this._quiz.perguntas = Perguntas.getPerguntas();
-        this._quiz.perfis = Perfis.getPerfis();
+        this._quiz.perguntas = this._quiz.getPerguntas();
+        this._quiz.perfis = this._quiz.getPerfis();;
 
         this._resultadoQuiz = new Bind(new ResultadoQuiz(), new ResultadoQuizView($('#resultadoQuizView')), 'resultado');
 

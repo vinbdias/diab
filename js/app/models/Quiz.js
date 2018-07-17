@@ -71,6 +71,18 @@ var Quiz = function () {
             });
         }
     }, {
+        key: "getPerguntas",
+        value: function getPerguntas() {
+
+            return PerguntasDataSource.getPerguntas();
+        }
+    }, {
+        key: "getPerfis",
+        value: function getPerfis() {
+
+            return PerfisDataSource.getPerfis();
+        }
+    }, {
         key: "perguntas",
         set: function set(perguntas) {
 

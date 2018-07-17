@@ -81,6 +81,16 @@ class Quiz {
         return valores.reduce((acumulador, valor) => acumulador + valor);
     }
 
+    getPerguntas() {
+
+        return PerguntasDataSource.getPerguntas();
+    }
+
+    getPerfis() {
+
+        return PerfisDataSource.getPerfis();
+    }
+
     get perfis() {
 
         return this._perfis;

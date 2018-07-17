@@ -15,6 +15,12 @@ class ListaConvenios {
         this._convenios = [];
     }
 
+    set convenios(convenios) {
+        
+        if(Array.isArray(convenios))
+            this._convenios = convenios;
+    }
+
     get convenios() {
 
         return [].concat(this._convenios);

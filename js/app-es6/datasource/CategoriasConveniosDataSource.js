@@ -1,4 +1,4 @@
-class CategoriasConvenios {
+class CategoriasConveniosDataSource {
 
     static getCategorias() {
 
