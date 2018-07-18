@@ -1,14 +1,16 @@
 class QuizController {
 
     constructor() {
-        
+
+        this._teste = false;
+                    
         this._quiz = new Bind(
             new Quiz(),
             new QuizView($('#quizView')),
             'perguntas'
         );
         this._quiz.perguntas = this._quiz.getPerguntas();
-        this._quiz.perfis = this._quiz.getPerfis();;
+        this._quiz.perfis = this._quiz.getPerfis();
         
 
         this._resultadoQuiz = new Bind(
@@ -16,36 +18,76 @@ class QuizController {
             new ResultadoQuizView($('#resultadoQuizView')),
             'resultado'
         );        
-
-        this._quizService = new QuizService();
+        
+        this._quizService = new QuizService();                                  
     }
 
-    submeterRespostas(event) {
+    jQuerySmartWizard() {             
 
-        event.preventDefault();
+        $('#smartwizard').on('leaveStep', function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
 
-        const teste = true;
+            if(stepDirection == 'forward') {
 
+                let numeroPergunta = stepNumber + 1;
+                if(this._validarResposta(numeroPergunta)) {
+                    
+                    if(numeroPergunta == 10)
+                        this._submeterRespostas();
+    
+                    return true;
+                }
+                else return false;
+            }
+            
+            return true;
+        }.bind(this));
+
+        $('#smartwizard').on('showStep', function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
+
+            if(stepPosition === 'first')  
+                $('#prev-btn').addClass('disabled');
+            else 
+                if(stepPosition === 'final')
+                    $("#next-btn").addClass('disabled');
+                else {
+
+                    $('#prev-btn').removeClass('disabled');
+                    $('#next-btn').removeClass('disabled');
+                }
+        });
+
+        $('#smartwizard').smartWizard({
+                selected: 0,
+                theme: 'default',
+                transitionEffect:'fade',
+                showStepURLhash: false,
+                toolbarSettings: {toolbarPosition: 'both',
+                                    toolbarButtonPosition: 'end',
+                                }
+        });
+
+        
+    }
+
+    _submeterRespostas() {        
+        
         let respostas = [];
 
-        if(!teste) {
-
-            this._obterRespostas();
-        
-            if(!this._validar())
-                return false;
+        if(!this._teste) {
     
+            this._obterRespostas();
+
             respostas = [
-                this._inputPergunta1.value,
-                this._inputPergunta2.value,
-                this._inputPergunta3.value,
-                this._inputPergunta4.value,
-                this._inputPergunta5.value,
-                this._inputPergunta6.value,
-                this._inputPergunta7.value,
-                this._inputPergunta8.value,
-                this._inputPergunta9.value,
-                this._inputPergunta10.value,
+                this._inputPergunta1.val(),
+                this._inputPergunta2.val(),
+                this._inputPergunta3.val(),
+                this._inputPergunta4.val(),
+                this._inputPergunta5.val(),
+                this._inputPergunta6.val(),
+                this._inputPergunta7.val(),
+                this._inputPergunta8.val(),
+                this._inputPergunta9.val(),
+                this._inputPergunta10.val(),
             ];
         }
         else
@@ -56,27 +98,26 @@ class QuizController {
         this._quizService.gravarQuiz(respostas, this._resultadoQuiz.resultado);              
     }
 
-    _validar() {
+    _validarQuiz() {
 
         if(
-            this._inputPergunta1 == null ||
-            this._inputPergunta2 == null ||
-            this._inputPergunta3 == null ||
-            this._inputPergunta4 == null ||
-            this._inputPergunta5 == null ||
-            this._inputPergunta6 == null ||
-            this._inputPergunta7 == null ||
-            this._inputPergunta8 == null ||
-            this._inputPergunta9 == null ||
-            this._inputPergunta10 == null
+            !this._inputPergunta1.length ||
+            !this._inputPergunta2.length ||
+            !this._inputPergunta3.length ||
+            !this._inputPergunta4.length ||
+            !this._inputPergunta5.length ||
+            !this._inputPergunta6.length ||
+            !this._inputPergunta7.length ||
+            !this._inputPergunta8.length ||
+            !this._inputPergunta9.length ||
+            !this._inputPergunta10.length
         )
             return false;
 
         return true;
     }
 
-    _obterRespostas() {
-        let $ = document.querySelector.bind(document);
+    _obterRespostas() {        
 
         this._inputPergunta1 = $('input[name="pergunta1"]:checked');        
         this._inputPergunta2 = $('input[name="pergunta2"]:checked');
@@ -88,5 +129,16 @@ class QuizController {
         this._inputPergunta8 = $('input[name="pergunta8"]:checked');
         this._inputPergunta9 = $('input[name="pergunta9"]:checked');
         this._inputPergunta10 = $('input[name="pergunta10"]:checked');             
+    }
+
+    _validarResposta(numero) {
+
+        if(this._teste) return true;
+        
+        let inputPergunta = $('input[name="pergunta' + numero.toString() + '"]:checked');
+
+        if(inputPergunta.length > 0) return true;
+
+        return false;        
     }
 }

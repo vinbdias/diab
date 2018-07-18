@@ -20,12 +20,11 @@ var QuizView = function (_View) {
     _createClass(QuizView, [{
         key: 'template',
         value: function template(model) {
-
-            return model.perguntas !== undefined ? '\n            ' + model.perguntas.map(function (pergunta) {
-                return '\n            <div class="col-md-12 pergunta" id="pergunta' + pergunta.numero + '">\n                <h3>Pergunta ' + pergunta.numero + ' de 10</h3>\n                <h2>' + pergunta.textoPergunta + '</h2>\n                ' + pergunta.opcoes.map(function (opcao) {
-                    return '\n                <div class="radio">\n                    <label for="pergunta' + pergunta.numero + 'Opcao' + opcao.rotulo + '">\n                        ' + opcao.rotulo + ') ' + opcao.textoOpcao + '\n                    </label>&nbsp;\n                    <input type="radio" name="pergunta' + pergunta.numero + '" id="pergunta' + pergunta.numero + 'Opcao' + opcao.rotulo + '" value="' + opcao.rotulo + '">\n                </div>            \n                ';
-                }).join('') + '                                            \n            </div> \n            ';
-            }).join('') + '  \n            <div class="col-md-12 text-center">\n                <button type="submit" class="btn btn-primary" onclick="quizController.submeterRespostas(event)">Enviar</button>\n            </div>               \n        ' : '';
+            return model.perguntas !== undefined ? '\n        ' + model.perguntas.map(function (pergunta) {
+                return '\n        <div id="step-' + pergunta.numero + '">\n            <h3 class="text-center">Pergunta ' + pergunta.numero + ' de 10</h3><br/>\n            <h2 class="border-bottom border-gray pb-2 text-center">' + pergunta.textoPergunta + '</h2>\n            <div class="col-md-10 col-lg-offset-1 pergunta" id="pergunta' + pergunta.numero + '">\n                ' + pergunta.opcoes.map(function (opcao) {
+                    return '\n                <div class="radio">\n                    <input type="radio" name="pergunta' + pergunta.numero + '" id="pergunta' + pergunta.numero + 'Opcao' + opcao.rotulo + '" value="' + opcao.rotulo + '">\n                    <label for="pergunta' + pergunta.numero + 'Opcao' + opcao.rotulo + '">\n                    &nbsp;' + opcao.textoOpcao + '\n                    </label>\n                </div> \n                ';
+                }).join('') + '                           \n            </div>\n        </div>\n        ';
+            }).join('') + '\n\n        <div id="step-11" class="">\n            <div id="resultadoQuizView">\n            </div>\n        </div>            \n        ' : '';
         }
     }]);
 

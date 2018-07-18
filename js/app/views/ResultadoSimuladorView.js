@@ -21,7 +21,7 @@ var ResultadoSimuladorView = function (_View) {
         key: 'template',
         value: function template(modelo) {
 
-            return modelo.resultado !== undefined ? '\n        <div class="col-md-12">\n            <h1>Economia total de ' + modelo.resultado.totalDesconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) + '</h1>            \n        </div>        \n        ' : '';
+            return modelo.resultado !== undefined ? '\n        <div class="col-md-6 text-right">\n            <p>Seus gastos mensais:</p>\n            <p class="gasto_mes">' + modelo.resultado.totalCustos.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) + '</p>\n            <br/>\n            <p>Quanto voc\xEA gastaria usando<br/>a rede conveniada ANAJUSTRA:</p>\n            <p class="desc_ansjt">' + modelo.resultado.totalCustosDesconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) + '</p>\n        </div>\n        <div class="col-md-6">\n            <div class="triangulo text-center">\n                Economia de<br/>\n                <span>' + modelo.resultado.totalDesconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) + '</span> por m\xEAs<br/>\n                e <span>' + (modelo.resultado.totalDesconto * 12).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) + '</span> por ano\n            </div>\n        </div>                \n        ' : '';
         }
     }]);
 

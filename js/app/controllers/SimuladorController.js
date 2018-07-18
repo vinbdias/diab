@@ -12,6 +12,15 @@ var SimuladorController = function () {
         this._inputCustosEducacao = $('#custosEducacao');
         this._inputCustosFarmacia = $('#custosFarmacia');
         this._inputCustosLazer = $('#custosLazer');
+        this._botaoEnviar = $('#botaoEnviarSimulador');
+        this._spanTextoDescubra = $('#spanTextoDescubra');
+        this._spanTextoInforme = $('#spanTextoInforme');
+        this._divCamposSimulador = $('#camposSimulador');
+        this._divResultadoSimulador = $('#resultadoSimuladorView');
+
+        this._capturarClickBotao();
+
+        this._capturarKeyUpInputs();
 
         this._simulador = new Simulador();
 
@@ -19,44 +28,88 @@ var SimuladorController = function () {
     }
 
     _createClass(SimuladorController, [{
-        key: 'formatarValorComprasInternet',
-        value: function formatarValorComprasInternet(event) {
+        key: '_capturarKeyUpInputs',
+        value: function _capturarKeyUpInputs() {
+            var _this = this;
+
+            this._inputComprasInternet.on('keyup', function (e) {
+                return _this._formatarValorComprasInternet(e);
+            });
+
+            this._inputCustosEducacao.on('keyup', function (e) {
+                return _this._formatarValorCustosEducacao(e);
+            });
+
+            this._inputCustosFarmacia.on('keyup', function (e) {
+                return _this._formatarValorCustosFarmacia(e);
+            });
+
+            this._inputCustosLazer.on('keyup', function (e) {
+                return _this._formatarValorCustosLazer(e);
+            });
+        }
+    }, {
+        key: '_capturarClickBotao',
+        value: function _capturarClickBotao() {
+            var _this2 = this;
+
+            this._botaoEnviar.on('click', function (e) {
+
+                e.preventDefault();
+
+                _this2._calcularEconomia();
+                _this2._esconderInputsExibirResultado();
+            });
+        }
+    }, {
+        key: '_formatarValorComprasInternet',
+        value: function _formatarValorComprasInternet(event) {
 
             event.preventDefault();
 
             this._inputComprasInternet.val(NumeroHelper.formatarFloatToBRL(this._inputComprasInternet.val()));
         }
     }, {
-        key: 'formatarValorCustosEducacao',
-        value: function formatarValorCustosEducacao(event) {
+        key: '_formatarValorCustosEducacao',
+        value: function _formatarValorCustosEducacao(event) {
 
             event.preventDefault();
 
             this._inputCustosEducacao.val(NumeroHelper.formatarFloatToBRL(this._inputCustosEducacao.val()));
         }
     }, {
-        key: 'formatarValorCustosFarmacia',
-        value: function formatarValorCustosFarmacia(event) {
+        key: '_formatarValorCustosFarmacia',
+        value: function _formatarValorCustosFarmacia(event) {
 
             event.preventDefault();
 
             this._inputCustosFarmacia.val(NumeroHelper.formatarFloatToBRL(this._inputCustosFarmacia.val()));
         }
     }, {
-        key: 'formatarValorCustosLazer',
-        value: function formatarValorCustosLazer(event) {
+        key: '_formatarValorCustosLazer',
+        value: function _formatarValorCustosLazer(event) {
 
             event.preventDefault();
 
             this._inputCustosLazer.val(NumeroHelper.formatarFloatToBRL(this._inputCustosLazer.val()));
         }
     }, {
-        key: 'calcularEconomia',
-        value: function calcularEconomia(event) {
-
-            event.preventDefault();
+        key: '_calcularEconomia',
+        value: function _calcularEconomia() {
 
             this._resultadoSimulador.resultado = this._simulador.calcularEconomia(NumeroHelper.parseBRLToFloat(this._inputComprasInternet.val()), NumeroHelper.parseBRLToFloat(this._inputCustosEducacao.val()), NumeroHelper.parseBRLToFloat(this._inputCustosFarmacia.val()), NumeroHelper.parseBRLToFloat(this._inputCustosLazer.val()));
+        }
+    }, {
+        key: '_esconderInputsExibirResultado',
+        value: function _esconderInputsExibirResultado() {
+            var _this3 = this;
+
+            this._divCamposSimulador.fadeOut(1000);
+            this._botaoEnviar.fadeOut(1000);
+            this._spanTextoDescubra.fadeOut(1000);
+            this._spanTextoInforme.fadeOut(1000, function () {
+                return _this3._divResultadoSimulador.fadeIn(1500);
+            });
         }
     }]);
 
