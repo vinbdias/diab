@@ -15,6 +15,14 @@ var CategoriaConvenio = function () {
 
             return CategoriasConveniosDataSource.getCategorias();
         }
+    }, {
+        key: "getCategoriaPorId",
+        value: function getCategoriaPorId(categoriaId) {
+
+            return CategoriasConveniosDataSource.getCategorias().find(function (categoria) {
+                return categoria.ID == categoriaId;
+            });
+        }
     }]);
 
     return CategoriaConvenio;

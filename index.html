@@ -1,359 +1,610 @@
 ﻿<!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title>Documento sem título</title>
-<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
-<link rel="stylesheet prefetch" href="css/vendor/normalize.min.css">
-<link href="css/vendor/googlefonts.css" rel="stylesheet" type="text/css" />
-<link href="css/vendor/smart_wizard.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8">
+    <title>Documento sem título</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet prefetch" href="css/vendor/normalize.min.css">
+    <link href="css/vendor/googlefonts.css" rel="stylesheet" type="text/css" />
+    <link href="css/vendor/smart_wizard.css" rel="stylesheet" type="text/css" />
 
-<style>
-::-webkit-scrollbar { 
-    display: none; 
-}
-.row{
-	max-width:100%;
-}
-.header{
-	margin-bottom:100px;
-}
-.et-hero-tabs,
-.et-slide {
-    color: #fff;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    position: relative;
-	background-size:cover;
-    background-image:url(img/bg.jpg);
-		text-align: center;
-    h1 {
-        font-size: 2rem;
-        margin: 0;
-        letter-spacing: 1rem;
-    }
-    h3 {
-        font-size: 1rem;
-        letter-spacing: 0.3rem;
-        opacity: 0.6;
-    }
-}
+    <style>
+        body::-webkit-scrollbar {
+            display: none;
+        }
 
-.et-hero-tabs-container {
-    display: flex;
-	text-align:center;
-    flex-direction: row;
-    position: absolute;
-	padding:0!important;
-    bottom: 0;
-    width: 100%;
-    height: 150px;
-    background: #fff;
-    z-index: 10;
-    &--top {
-        position: fixed;
-        top: 0;
-    }
-}
-.et-hero-tabs-container p{
-	width:100%;
-	text-align:center;
-	margin-top:-10px;
-}
+        .row {
+            max-width: 100%;
+        }
+
+        .header {
+            margin-bottom: 100px;
+        }
+
+        .et-hero-tabs,
+        .et-slide {
+            color: #fff;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            background-size: cover;
+            background-image: url(img/bg.jpg);
+            text-align: center;
+            h1 {
+                font-size: 2rem;
+                margin: 0;
+                letter-spacing: 1rem;
+            }
+            h3 {
+                font-size: 1rem;
+                letter-spacing: 0.3rem;
+                opacity: 0.6;
+            }
+        }
+
+        .et-hero-tabs-container {
+            display: flex;
+            text-align: center;
+            flex-direction: row;
+            position: absolute;
+            padding: 0 !important;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            background: #fff;
+            z-index: 10;
+            &--top {
+                position: fixed;
+                top: 0;
+            }
+        }
+
+        .et-hero-tabs-container p {
+            width: 100%;
+            text-align: center;
+            margin-top: -10px;
+        }
 
 
-.et-hero-tab {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    color: #fff;
-    letter-spacing: 0.1rem;
-		transition: all 0.5s ease;
-		font-size: 0.8rem;
-	  &:hover {
-			color:white;
-      background: rgba(102,177,241,0.8);
-			transition: all 0.5s ease;
-    }
-}
+        .et-hero-tab {
+            /*display: flex;*/
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            color: #fff;
+            letter-spacing: 0.1rem;
+            transition: all 0.5s ease;
+            font-size: 0.8rem;
+            &:hover {
+                color: white;
+                background: rgba(102, 177, 241, 0.8);
+                transition: all 0.5s ease;
+            }
+        }
 
-.et-hero-tab-slider {
-    position: absolute;
-    bottom: 0;
-    width: 0;
-    height: 6px;
-    background: #66B1F1;
-    transition: left 0.3s ease;
-}
-.logo{
-	padding:50px 0 0 30px;	
-}
-.botoes{
-	padding-left:5%;
-	width:90%;
-	font-size:24px;	
-}
-.botoes span{
-	font-size:40px;	
-}
-.titulo_sec, .titu_simulador{
-	padding-left:30px;
-	padding-top:100px;
-}
-.titulo_sec h1{
-	font-size:50px;	
-	color:#4F83AC;
-}
-.titu_simulador h1{
-	font-size:50px;	
-	color:#8CBF43;
-}
-.titu_simulador span{
-	font-size:35px;	
-	color:#8CBF43;
-	font-family:"Patua One",sans-serif !important;
-	font-weight:bold;
-}
-.campos_simulador{
-	padding-top:80px;
-}
-.campos_simulador p{
-	font-size:30px;	
-}
-.campos_simulador input{
-	max-width:350px;
-	height:60px;
-	font-size:55px;
-	color:rgba(0,0,0,1.00);
-	padding:10px;
-	text-align:center;
-}
-.botao_simulador {
-    margin-top: 60px;
-}
-.resultado_simulador{
-	font-size:36px;
-}
-.gasto_mes{
-	font-size:55px;
-	color:#F7931E;
-}
-.desc_ansjt{
-	font-size:55px;
-	color:#8CBF43;
-}
-.triangulo{
-	width:480px;
-	height:480px;
-	background:url(img/result_simulador.png) no-repeat;
-	background-size:cover;
-	margin-top:-50px;
-	padding:130px 0 0 0;
-	font-size:38px;
-	line-height:50px;
-}
-.triangulo span{
-	color:#131D36;
-}
-</style>
+        .et-hero-tab-slider {
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 6px;
+            background: #66B1F1;
+            transition: left 0.3s ease;
+        }
+
+        .logo {
+            padding: 50px 0 0 30px;
+        }
+
+        .botoes {
+            padding-left: 5%;
+            width: 90%;
+            font-size: 24px;
+        }
+
+        .botoes span {
+            font-size: 40px;
+        }
+
+        .titulo_sec,
+        .titu_simulador,
+        .titu_convenios {
+            padding-left: 30px;
+            padding-top: 100px;
+        }
+
+        .titulo_sec h1 {
+            font-size: 50px;
+            color: #4F83AC;
+        }
+
+        .titu_simulador h1 {
+            font-size: 50px;
+            color: #8CBF43;
+        }
+
+        .titu_convenios h1 {
+            font-size: 50px;
+            color: #DF9518;
+        }
+
+        .titu_simulador span {
+            font-size: 35px;
+            color: #8CBF43;
+            font-family: "Patua One", sans-serif !important;
+            font-weight: bold;
+        }
+
+        .campos_simulador {
+            padding-top: 80px;
+        }
+
+        .campos_simulador p {
+            font-size: 30px;
+        }
+
+        .campos_simulador input {
+            max-width: 350px;
+            height: 60px;
+            font-size: 55px;
+            color: rgba(0, 0, 0, 1.00);
+            padding: 10px;
+            text-align: center;
+        }
+
+        .resultado_simulador {
+            font-size: 36px;
+        }
+
+        .gasto_mes {
+            font-size: 55px;
+            color: #F7931E;
+        }
+
+        .desc_ansjt {
+            font-size: 55px;
+            color: #8CBF43;
+        }
+
+        .triangulo {
+            width: 480px;
+            height: 480px;
+            background: url(img/result_simulador.png) no-repeat;
+            background-size: cover;
+            margin-top: -50px;
+            padding: 130px 0 0 0;
+            font-size: 38px;
+            line-height: 50px;
+        }
+
+        .triangulo span {
+            color: #131D36;
+        }
+
+        .categorias {
+            font-size: 20px;
+            color: #fff;
+            font-family: "Patua One", sans-serif !important;
+            font-weight: bold;
+        }
+
+        .cat_conv {
+            float: left;
+            width: 240px;
+            height: 240px;
+            margin-left: 15px !important;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            background-color: #DF9518;
+            font-size: 38px;
+            color: #fff;
+            font-family: "Patua One", sans-serif !important;
+            font-weight: bold;
+            padding-top: 60px;
+            cursor: pointer;
+        }
+
+        .cat_conv:frist-child {
+            margin-left: 0px !important;
+        }
+
+        .cat_conv {
+            padding-top: 90px;
+        }
+
+        .conv {}
+
+        .gallery_convenios {
+            background-color: #fff;
+            padding: 2.5% 30px 28px 4%;
+            -webkit-box-shadow: 0px 3px 9px 1px rgba(0, 0, 0, 0.1);
+            -moz-box-shadow: 0px 3px 9px 1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 3px 9px 1px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.1s ease-in-out;
+            width: 97%;
+            margin-bottom: 20px;
+            max-height: 150px;
+            height: 150px;
+            text-align: center;
+        }
+
+        .img-conv {
+            margin: 5% 0 0 25%;
+            width: 120px;
+            height: auto;
+        }
+
+        .todos-convenios {
+            height: 450px;
+            overflow: scroll;
+            overflow-x: hidden;
+        }
+
+        .text_conv {
+            height: 450px;
+            padding: 80px 15px 0 0;
+            font-size: 24px;
+            overflow: scroll;
+            overflow-x: hidden;
+        }
+    </style>
 </head>
 
-<body >
-  <!-- Hero -->
-  <section class="et-hero-tabs" id="home">
-  	<div class="row header">
-    	<div class="col-md-2 logo"><img src="img/logo.png"></div>
-    	<div class="col-md-10"></div>
-    </div>
-    <div class="row">
-        <div class="col-md-10 col-lg-offset-1">
-          <div class="col-md-4 "><a class="et-hero-tab" href="#quiz"><img src="img/bt_quiz.png"></a><br/>
-          <p class="botoes"><span>Quiz</span><br/>Que tipo de consumidor você é?<br/>
-Responda as perguntas e descubra!</p></div>
-          <div class="col-md-4 "><a class="et-hero-tab" href="#simulador"><img src="img/bt_simulador.png"></a><br/>
-          <p class="botoes"><span>Simulador</span><br/>Saiba quanto você pode economizar <br/>
-usando os convênios da ANAJUSTRA</p></div>
-          <div class="col-md-4 "><a class="et-hero-tab" href="#convenios"><img src="img/bt_conv.png"></a><br/>
-          <p class="botoes"><span>Convênios</span><br/>Conheça a rede conveniada<br/>
-da ANAJUSTRA</p></div>
-        </div> 
-    </div>
-    <div class="et-hero-tabs-container">
-		<p><img src="img/logos_footer.png" /></p>
-    </div>
-  </section>
-
-  <!-- Main -->
-  <main class="et-main">
-    <section class="et-slide" id="quiz">
-  	<div class="row">
-    	<div class="col-md-2 logo"> <a class="et-hero-tab" href="#home"><img src="img/logo.png"></a>
-        <a class="et-hero-tab" href="#home"><h2><img src="img/bt_inicio.png"></h2></a></div>
-    	<div class="col-md-8 titulo_sec"> <h1>QUIZ: Que tipo de consumidor você é?</h1></div>
-    </div>
-    <div class="row">
-    
-        <div id="smartwizard">
-            <ul>
-                <li><a href="#step-1">Pergunta  1/10</a></li>
-                <li><a href="#step-2">Pergunta  2//10</a></li>
-                <li><a href="#step-3">Pergunta  3/10</a></li>
-                <li><a href="#step-4">Pergunta  4/10</a></li>
-                <li><a href="#step-5">Pergunta  5/10</a></li>
-                <li><a href="#step-6">Pergunta  6/10</a></li>
-                <li><a href="#step-7">Pergunta  7/10</a></li>
-                <li><a href="#step-8">Pergunta  8/10</a></li>
-                <li><a href="#step-9">Pergunta  9/10</a></li>
-                <li><a href="#step-10">Pergunta  10/10</a></li>  
-                <li><a href="#step-11">Resultado</a></li>                             
-            </ul>
-
-            <div id="quizView">                  
+<body>
+    <!-- Hero -->
+    <section class="et-hero-tabs" id="home">
+        <div class="row header">
+            <div class="col-md-2 logo">
+                <img src="img/logo.png">
+            </div>
+            <div class="col-md-10"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-lg-offset-1">
+                <div class="col-md-4 ">
+                    <a class="et-hero-tab" href="#quiz">
+                        <img src="img/bt_quiz.png">
+                    </a>
+                    <br/>
+                    <p class="botoes">
+                        <span>Quiz</span>
+                        <br/>Que tipo de consumidor você é?
+                        <br/> Responda as perguntas e descubra!</p>
+                </div>
+                <div class="col-md-4 ">
+                    <a class="et-hero-tab" href="#simulador">
+                        <img src="img/bt_simulador.png">
+                    </a>
+                    <br/>
+                    <p class="botoes">
+                        <span>Simulador</span>
+                        <br/>Saiba quanto você pode economizar
+                        <br/> usando os convênios da ANAJUSTRA</p>
+                </div>
+                <div class="col-md-4 ">
+                    <a class="et-hero-tab" href="#convenios">
+                        <img src="img/bt_conv.png">
+                    </a>
+                    <br/>
+                    <p class="botoes">
+                        <span>Convênios</span>
+                        <br/>Conheça a rede conveniada
+                        <br/> da ANAJUSTRA</p>
+                </div>
             </div>
         </div>
-    </div> 
-    <div class="et-hero-tabs-container">
-		<p><img src="img/logos_footer.png" /></p>
-    </div>      
-    </section>
-    
-    <section class="et-slide" id="simulador">
-        <div class="row">
-            <div class="col-md-2 logo"> <a class="et-hero-tab" href="#home"><img src="img/logo.png"></a>
-            <a class="et-hero-tab" href="#home"><h2><img src="img/bt_inicio.png"></h2></a></div>
-            <div class="col-md-8 titu_simulador"> <h1>SIMULADOR DE ECONOMIA</h1><br/><span id="spanTextoDescubra">Descubra quanto você pode economizar<br/> ao usar nossa rede conveniada</span>
-            <br/><br/><br/><span id="spanTextoInforme">Informe sua despesa mensal com:</span></div>
-        </div>
-        <div class="row">
-             <div class="col-md-10 col-lg-offset-1 campos_simulador" id="camposSimulador">
-                <div class="col-md-3">
-                	<p>Compras pela internet (R$)</p>
-                	<p><input type="text" id="comprasInternet" placeholder="0,00"/> </p>
-                </div>
-                <div class="col-md-3">
-                	<p>Educação (R$)</p>
-                	<p><input type="text" id="custosEducacao" placeholder="0,00"/> </p>
-                </div>
-                <div class="col-md-3">
-                	<p>Farmácia (R$)</p>
-                	<p><input type="text" id="custosFarmacia" placeholder="0,00"/> </p>
-                </div>
-                <div class="col-md-3">
-                	<p>Lazer (R$)</p>
-                	<p><input type="text" id="custosLazer" placeholder="0,00"/> </p>
-                </div>
-            </div> 
-            <div class="col-md-10 col-lg-offset-1 text-center botao_simulador">
-                <button class="btn btn-secondary" id="botaoEnviarSimulador" type="button">Enviar</button>                
-            </div>           
-            <div class="col-md-10 col-lg-offset-1 resultado_simulador" style="display: none;" id="resultadoSimuladorView">          
-        	</div> 
-        </div> 
         <div class="et-hero-tabs-container">
-            <p><img src="img/logos_footer.png" /></p>
-        </div>     
+            <p>
+                <img src="img/logos_footer.png" />
+            </p>
+        </div>
     </section>
-        
-    <section class="et-slide" id="convenios">
-  	<div class="row">
-    	<div class="col-md-2 logo"> <a class="et-hero-tab" href="#home"><img src="img/logo.png"></a>
-        <a class="et-hero-tab" href="#home"><h2><img src="img/bt_inicio.png"></h2></a></div>
-    	<div class="col-md-10"></div>
-    </div>
-    <div class="row">
-    </div> 
-      
-    <div class="et-hero-tabs-container">
-		<p><img src="img/logos_footer.png" /></p>
-    </div>     
-    </section>
-    
-  </main>
+
+    <!-- Main -->
+    <main class="et-main">
+        <section class="et-slide" id="quiz">
+            <div class="row">
+                <div class="col-md-2 logo">
+                    <a class="et-hero-tab" href="#home">
+                        <img src="img/logo.png">
+                    </a>
+                    <a class="et-hero-tab" href="#home">
+                        <h2>
+                            <img src="img/bt_inicio.png">
+                        </h2>
+                    </a>
+                </div>
+                <div class="col-md-8 titulo_sec">
+                    <h1>QUIZ: Que tipo de consumidor você é?</h1>
+                </div>
+            </div>
+            <div class="row">
+
+                <div id="smartwizard">
+                    <ul>
+                        <li>
+                            <a href="#step-1">Pergunta 1/10</a>
+                        </li>
+                        <li>
+                            <a href="#step-2">Pergunta 2//10</a>
+                        </li>
+                        <li>
+                            <a href="#step-3">Pergunta 3/10</a>
+                        </li>
+                        <li>
+                            <a href="#step-4">Pergunta 4/10</a>
+                        </li>
+                        <li>
+                            <a href="#step-5">Pergunta 5/10</a>
+                        </li>
+                        <li>
+                            <a href="#step-6">Pergunta 6/10</a>
+                        </li>
+                        <li>
+                            <a href="#step-7">Pergunta 7/10</a>
+                        </li>
+                        <li>
+                            <a href="#step-8">Pergunta 8/10</a>
+                        </li>
+                        <li>
+                            <a href="#step-9">Pergunta 9/10</a>
+                        </li>
+                        <li>
+                            <a href="#step-10">Pergunta 10/10</a>
+                        </li>
+                        <li>
+                            <a href="#step-11">Resultado</a>
+                        </li>
+                    </ul>
+
+                    <div id="quizView">
+                    </div>
+                </div>
+            </div>
+            <div class="et-hero-tabs-container">
+                <p>
+                    <img src="img/logos_footer.png" />
+                </p>
+            </div>
+        </section>
+
+        <section class="et-slide" id="simulador">
+            <div class="row">
+                <div class="col-md-2 logo">
+                    <a class="et-hero-tab" href="#home">
+                        <img src="img/logo.png">
+                    </a>
+                    <a class="et-hero-tab" href="#home">
+                        <h2>
+                            <img src="img/bt_inicio.png">
+                        </h2>
+                    </a>
+                </div>
+                <div class="col-md-8 titu_simulador">
+                    <h1>SIMULADOR DE ECONOMIA</h1>
+                    <br/>
+                    <span id="spanTextoDescubra">Descubra quanto você pode economizar
+                        <br/> ao usar nossa rede conveniada</span>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <span id="spanTextoInforme">Informe sua despesa mensal com:</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 col-lg-offset-1 campos_simulador" id="camposSimulador">
+                    <div class="col-md-3">
+                        <p>Compras pela internet (R$)</p>
+                        <p>
+                            <input type="text" id="comprasInternet" placeholder="0,00" /> </p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>Educação (R$)</p>
+                        <p>
+                            <input type="text" id="custosEducacao" placeholder="0,00" /> </p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>Farmácia (R$)</p>
+                        <p>
+                            <input type="text" id="custosFarmacia" placeholder="0,00" /> </p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>Lazer (R$)</p>
+                        <p>
+                            <input type="text" id="custosLazer" placeholder="0,00" /> </p>
+                    </div>
+                </div>
+                <div class="col-md-10 col-lg-offset-1 text-center botao_simulador">
+                    <button class="btn btn-secondary" id="botaoEnviarSimulador" type="button">Enviar</button>
+                </div>
+                <div class="col-md-10 col-lg-offset-1 resultado_simulador" style="display: none;" id="resultadoSimuladorView">
+                </div>
+            </div>
+            <div class="et-hero-tabs-container">
+                <p>
+                    <img src="img/logos_footer.png" />
+                </p>
+            </div>
+        </section>
+
+        <section class="et-slide" id="convenios">
+            <div class="row">
+                <div class="col-md-2 logo">
+                    <a class="et-hero-tab" href="#home">
+                        <img src="img/logo.png">
+                    </a>
+                    <a class="et-hero-tab" href="#home">
+                        <h2>
+                            <img src="img/bt_inicio.png">
+                        </h2>
+                    </a>
+                </div>
+                <div class="col-md-8 titu_convenios">
+                    <h1>CONFIRA A REDE
+                        <br/> CONVENIADA DA ANAJUSTRA</h1>
+                </div>
+            </div>
+            <div class="row" id="categoriasConveniosView">
+                <div class="col-md-10 col-lg-offset-1 categorias">
+                    <h1>Selecione uma categoria</h1>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <a class="et-hero-tab linkCategoria" href="#cat_convenios" data-categoria="13">
+                        <div class="col-md-2 cat_conv" data-categoria="13" id="comp_online">COMPRAS ONLINE</div>
+                    </a>
+                    <a class="et-hero-tab linkCategoria" href="#cat_convenios" data-categoria="5">
+                        <div class="col-md-2 cat_conv" data-categoria="5" id="comp_educacao">EDUCAÇÃO</div>
+                    </a>
+                    <a class="et-hero-tab linkCategoria" href="#cat_convenios" data-categoria="4">
+                        <div class="col-md-2 cat_conv" data-categoria="4" id="comp_saude">SAÚDE</div>
+                    </a>
+                    <a class="et-hero-tab linkCategoria" href="#cat_convenios" data-categoria="6">
+                        <div class="col-md-2 cat_conv" data-categoria="6" id="comp_servicos">SERVIÇOS</div>
+                    </a>
+                    <a class="et-hero-tab linkCategoria" href="#cat_convenios" data-categoria="11">
+                        <div class="col-md-2 cat_conv" data-categoria="11" id="comp_turlar">TURISMO E LAZER</div>
+                    </a>
+                    <a class="et-hero-tab linkCategoria" href="#cat_convenios" data-categoria="26">
+                        <div class="col-md-2 cat_conv" data-categoria="26" id="comp_veiculos">VEÍCULOS</div>
+                    </a>
+                </div>
+            </div>
+            <div class="et-hero-tabs-container">
+                <p>
+                    <img src="img/logos_footer.png" />
+                </p>
+            </div>
+        </section>
+
+        <section class="et-slide" id="cat_convenios">
+            <div class="row">
+                <div class="col-md-2 logo">
+                    <a class="et-hero-tab" href="#home">
+                        <img src="img/logo.png">
+                    </a>
+                    <a class="et-hero-tab" href="#home">
+                        <h2>
+                            <img src="img/bt_inicio.png">
+                        </h2>
+                    </a>
+                </div>
+                <div class="col-md-8 titu_convenios">
+                    <h1>CONFIRA A REDE
+                        <br/> CONVENIADA DA ANAJUSTRA</h1>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-1" style="height:450px;">
+                    <div style="position:absolute;bottom:0;margin-left:60px;">
+                        <a class="et-hero-tab" href="#convenios" id="botaoVoltarParaCategorias">
+                            <img src="img/bt_voltar.png">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-10 col-lg-offset-1 categorias">
+                    <h1 id="tituloCategoriaListaConvenios"></h1>
+                    <br/>
+
+                    <div class="todos-convenios" id="conveniosView">
+                    </div>
+                </div>
+            </div>
+            <div class="et-hero-tabs-container">
+                <p>
+                    <img src="img/logos_footer.png" />
+                </p>
+            </div>
+        </section>
+
+        <section class="et-slide" id="mostra_convenio">
+            <div class="row">
+                <div class="col-md-2 logo">
+                    <a class="et-hero-tab" href="#home">
+                        <img src="img/logo.png">
+                    </a>
+                    <a class="et-hero-tab" href="#home">
+                        <h2>
+                            <img src="img/bt_inicio.png">
+                        </h2>
+                    </a>
+                </div>
+                <div class="col-md-8 titu_convenios">
+                    <h1>CONFIRA A REDE
+                        <br/> CONVENIADA DA ANAJUSTRA</h1>
+                </div>
+            </div>
+            <div class="row" id="convenioView">
+            </div>
+            <div class="et-hero-tabs-container">
+                <p>
+                    <img src="img/logos_footer.png" />
+                </p>
+            </div>
+        </section>
+
+    </main>
     <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="js/vendor/StickyNavigation.js"></script>
     <script src="js/vendor/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  
-  <script>
-	class StickyNavigation {
-		constructor() {
-			this.currentId = null;
-			this.currentTab = null;
-			this.tabContainerHeight = 0;
-			let self = this;
-			$('.et-hero-tab').click(function() { 
-				self.onTabClick(event, $(this)); 
-			});
-			$(window).scroll(() => { this.onScroll(); });
-			$(window).resize(() => { this.onResize(); });
-		}
-		
-		onTabClick(event, element) {
-			event.preventDefault();
-			let scrollTop = $(element.attr('href')).offset().top - this.tabContainerHeight + 1;
-			$('html, body').animate({ scrollTop: scrollTop }, 600);
-		}
-		
-		onScroll() {
-			this.checkTabContainerPosition();
-		this.findCurrentTabSelector();
-		}
-		
-		onResize() {
-			if(this.currentId) {
-				this.setSliderCss();
-			}
-		}
-	}
 
-	new StickyNavigation();  
-  </script>
-  
-  <script type="text/javascript" src="js/vendor/jquery.smartWizard.min.js"></script>
+    <script>
 
-  <script type="text/javascript" src="js/app/services/polyfill/fetch.js"></script> 
-  <script type="text/javascript" src="js/app/datasource/PerfisDataSource.js"></script> 
-  <script type="text/javascript" src="js/app/datasource/PerguntasDataSource.js"></script> 
-  <script type="text/javascript" src="js/app/datasource/CategoriasConveniosDataSource.js"></script> 
-  <script type="text/javascript" src="js/app/datasource/ConveniosDataSource.js"></script> 
-  <script type="text/javascript" src="js/app/services/ProxyFactory.js"></script> 
-  <script type="text/javascript" src="js/app/services/HttpService.js"></script>       
-  <script type="text/javascript" src="js/app/services/QuizService.js"></script>        
-  <script type="text/javascript" src="js/app/helpers/Bind.js"></script>   
-  <script type="text/javascript" src="js/app/helpers/NumeroHelper.js"></script>  
-  <script type="text/javascript" src="js/app/helpers/StringHelper.js"></script>   
-  <script type="text/javascript" src="js/app/models/Quiz.js"></script>
-  <script type="text/javascript" src="js/app/models/ResultadoQuiz.js"></script>
-  <script type="text/javascript" src="js/app/models/CategoriaConvenio.js"></script>
-  <script type="text/javascript" src="js/app/models/ListaCategoriasConvenios.js"></script>
-  <script type="text/javascript" src="js/app/models/ListaConvenios.js"></script>
-  <script type="text/javascript" src="js/app/models/Convenio.js"></script>
-  <script type="text/javascript" src="js/app/models/ResultadoSimulador.js"></script>
-  <script type="text/javascript" src="js/app/models/Simulador.js"></script>
-  <script type="text/javascript" src="js/app/views/View.js"></script>        
-  <script type="text/javascript" src="js/app/views/QuizView.js"></script>
-  <script type="text/javascript" src="js/app/views/ResultadoSimuladorView.js"></script>    
-  <script type="text/javascript" src="js/app/views/ResultadoQuizView.js"></script>        
-  <script type="text/javascript" src="js/app/views/CategoriasConveniosView.js"></script> 
-  <script type="text/javascript" src="js/app/views/ConveniosView.js"></script> 
-  <script type="text/javascript" src="js/app/views/ConvenioView.js"></script>      
-  <script type="text/javascript" src="js/app/controllers/QuizController.js"></script>    
-  <script type="text/javascript" src="js/app/controllers/SimuladorController.js"></script>    
-  <script type="text/javascript" src="js/app/controllers/ConveniosController.js"></script>    
-  <script>             
-      //var conveniosController = new ConveniosController();   
-    $(function() {           
+    </script>
 
-        var quizController = new QuizController();  
-        quizController.jQuerySmartWizard();   
-        
-        var simuladorController = new SimuladorController();                                                        
-    });
-  </script>  
-    
-    
-        
+    <script type="text/javascript" src="js/vendor/jquery.smartWizard.min.js"></script>
+
+    <script type="text/javascript" src="js/app/services/polyfill/fetch.js"></script>
+    <script type="text/javascript" src="js/app/datasource/PerfisDataSource.js"></script>
+    <script type="text/javascript" src="js/app/datasource/PerguntasDataSource.js"></script>
+    <script type="text/javascript" src="js/app/datasource/CategoriasConveniosDataSource.js"></script>
+    <script type="text/javascript" src="js/app/datasource/ConveniosDataSource.js"></script>
+    <script type="text/javascript" src="js/app/services/ProxyFactory.js"></script>
+    <script type="text/javascript" src="js/app/services/HttpService.js"></script>
+    <script type="text/javascript" src="js/app/services/QuizService.js"></script>
+    <script type="text/javascript" src="js/app/helpers/Bind.js"></script>
+    <script type="text/javascript" src="js/app/helpers/NumeroHelper.js"></script>
+    <script type="text/javascript" src="js/app/helpers/StringHelper.js"></script>
+    <script type="text/javascript" src="js/app/models/Quiz.js"></script>
+    <script type="text/javascript" src="js/app/models/ResultadoQuiz.js"></script>
+    <script type="text/javascript" src="js/app/models/CategoriaConvenio.js"></script>
+    <script type="text/javascript" src="js/app/models/ListaCategoriasConvenios.js"></script>
+    <script type="text/javascript" src="js/app/models/ListaConvenios.js"></script>
+    <script type="text/javascript" src="js/app/models/Convenio.js"></script>
+    <script type="text/javascript" src="js/app/models/ResultadoSimulador.js"></script>
+    <script type="text/javascript" src="js/app/models/Simulador.js"></script>
+    <script type="text/javascript" src="js/app/views/View.js"></script>
+    <script type="text/javascript" src="js/app/views/QuizView.js"></script>
+    <script type="text/javascript" src="js/app/views/ResultadoSimuladorView.js"></script>
+    <script type="text/javascript" src="js/app/views/ResultadoQuizView.js"></script>
+    <script type="text/javascript" src="js/app/views/CategoriasConveniosView.js"></script>
+    <script type="text/javascript" src="js/app/views/ConveniosView.js"></script>
+    <script type="text/javascript" src="js/app/views/ConvenioView.js"></script>
+    <script type="text/javascript" src="js/app/controllers/QuizController.js"></script>
+    <script type="text/javascript" src="js/app/controllers/SimuladorController.js"></script>
+    <script type="text/javascript" src="js/app/controllers/ConveniosController.js"></script>
+    <script>             
+
+        $(function () {
+
+            var quizController = new QuizController();
+            quizController.jQuerySmartWizard();
+
+            var simuladorController = new SimuladorController();
+
+            new StickyNavigation();
+
+        });
+        var conveniosController = new ConveniosController();
+    </script>
+
+
+
 </body>
+
 </html>

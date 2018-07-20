@@ -19,9 +19,9 @@ var ConvenioView = function (_View) {
 
     _createClass(ConvenioView, [{
         key: "template",
-        value: function template(model) {
+        value: function template(modelo) {
 
-            return model.convenio !== undefined ? "\n            <h2>" + model.convenio.TITULO + "</h2>\n            <div class=\"convenioConteudo\">" + model.convenio.CONTEUDO + "</div>\n        " : "";
+            return modelo.convenio !== undefined ? "\n            <div class=\"col-md-2\" style=\"height:450px;\">\n                <div class=\"gallery_convenios2\" style=\"margin:120px 0 0 20px;height: 160px; \" >\n                        <img src=\"https://www.anajustra.org.br/img_site/convenios/" + modelo.convenio.IMAGEM + "\" title=\"" + modelo.convenio.TITULO + "\" alt=\"" + modelo.convenio.TITULO + "\" class=\"img-responsive img-conv\"/>\n                </div>\n                <div style=\"position:absolute;bottom:0;margin:0 0 0 95px;\"><a class=\"et-hero-tab\" href=\"#cat_convenios\" id=\"botaoVoltarParaConvenios\"><img src=\"img/bt_voltar.png\"></a></div>\n            </div>\n            \n            <div class=\"col-md-9 text_conv text-left\">\n                " + modelo.convenio.CONTEUDO + "               \n            </div>             \n        " : "";
         }
     }]);
 

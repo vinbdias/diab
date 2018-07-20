@@ -11,13 +11,13 @@ class ListaCategoriasConvenios {
     }    
 
     set categorias(categorias) {
-
+        
         if(Array.isArray(categorias))
-            this._categorias = categorias;
+            this._categorias = categorias;        
     }
 
     get categorias() {
-
+        
         return [].concat(this._categorias);
     }
 }

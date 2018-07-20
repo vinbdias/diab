@@ -19,11 +19,11 @@ var ConveniosView = function (_View) {
 
     _createClass(ConveniosView, [{
         key: 'template',
-        value: function template(model) {
+        value: function template(modelo) {
 
-            return '\n            <ul>\n                ' + model.convenios.map(function (convenio) {
-                return '\n                <li class="conveniosCategoriaItem" id="convenio' + StringHelper.ucWordsSanitizeRemoverEspacosEmBranco(convenio.TITULO) + '" onclick="conveniosController.mostrarConvenio(' + convenio.ID + ')">' + convenio.TITULO + '</li>\n                ';
-            }).join('') + '\n            </ul>\n        ';
+            return '\n        ' + modelo.convenios.map(function (convenio) {
+                return '\n        <div class="conv col-md-2"> \n            <div class="gallery_convenios">\n                <a class="et-hero-tab linkConvenio" href="#mostra_convenio" data-convenio="' + convenio.ID + '">\n                    <img src="https://www.anajustra.org.br/img_site/convenios/' + convenio.IMAGEM + '" title="' + convenio.TITULO + '" alt="' + convenio.TITULO + '" class="img-responsive img-conv"></a>\n            </div>\n        </div> \n        ';
+            }).join('') + '\n        ';
         }
     }]);
 

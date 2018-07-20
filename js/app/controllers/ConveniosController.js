@@ -9,32 +9,82 @@ var ConveniosController = function () {
         _classCallCheck(this, ConveniosController);
 
         this._categoriaConvenio = new CategoriaConvenio();
-        this._listaCategoriasConvenios = new ListaCategoriasConvenios();
-        this._categoriasConveniosView = new CategoriasConveniosView($('#categoriasConveniosView'));
-
-        this._listaCategoriasConvenios = new Bind(new ListaCategoriasConvenios(), new CategoriasConveniosView($('#categoriasConveniosView')), 'categorias');
 
         this._listaConvenios = new Bind(new ListaConvenios(), new ConveniosView($('#conveniosView')), 'convenios');
 
-        this._listaCategoriasConvenios.categorias = this._categoriaConvenio.getCategorias();
-
         this._convenio = new Bind(new Convenio(), new ConvenioView($('#convenioView')), 'convenio');
+
+        this._tituloCategoriaListaConvenios = $('#tituloCategoriaListaConvenios');
+
+        this._capturarClickCategoria();
+
+        this._capturarClickBotaoVoltarParaCategorias();
     }
 
     _createClass(ConveniosController, [{
-        key: 'listarConveniosPorCategoria',
-        value: function listarConveniosPorCategoria(categoriaId) {
+        key: '_capturarClickCategoria',
+        value: function _capturarClickCategoria() {
+
+            var acaoClickCategoria = this._listarConveniosPorCategoria.bind(this);
+            $('.linkCategoria').each(function () {
+                var _this = this;
+
+                $(this).on('click', function () {
+                    return acaoClickCategoria($(_this).data('categoria'));
+                });
+            });
+        }
+    }, {
+        key: '_capturarClickConvenio',
+        value: function _capturarClickConvenio() {
+
+            var acaoClickConvenio = this._mostrarConvenio.bind(this);
+            $('.linkConvenio').each(function () {
+                var _this2 = this;
+
+                $(this).on('click', function () {
+                    return acaoClickConvenio($(_this2).data('convenio'));
+                });
+            });
+        }
+    }, {
+        key: '_capturarClickBotaoVoltarParaCategorias',
+        value: function _capturarClickBotaoVoltarParaCategorias() {
+            var _this3 = this;
+
+            $('#botaoVoltarParaCategorias').on('click', function () {
+                return _this3._listaConvenios.convenios = [];
+            });
+        }
+    }, {
+        key: '_capturarClickBotaoVoltarParaConvenios',
+        value: function _capturarClickBotaoVoltarParaConvenios() {
+            var _this4 = this;
+
+            $('#botaoVoltarParaConvenios').on('click', function () {
+                return _this4._convenio.convenio = undefined;
+            });
+        }
+    }, {
+        key: '_listarConveniosPorCategoria',
+        value: function _listarConveniosPorCategoria(categoriaId) {
 
             this._listaConvenios.convenios = [];
             this._convenio.convenio = undefined;
 
             this._listaConvenios.convenios = this._convenio.getConveniosPorCategoriaId(categoriaId);
+
+            this._tituloCategoriaListaConvenios.html(this._categoriaConvenio.getCategoriaPorId(categoriaId).CATEGORIA);
+
+            this._capturarClickConvenio();
         }
     }, {
-        key: 'mostrarConvenio',
-        value: function mostrarConvenio(convenioId) {
+        key: '_mostrarConvenio',
+        value: function _mostrarConvenio(convenioId) {
 
             this._convenio.convenio = this._convenio.getConvenioPorId(convenioId);
+
+            this._capturarClickBotaoVoltarParaConvenios();
         }
     }]);
 

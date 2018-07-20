@@ -19,11 +19,11 @@ var CategoriasConveniosView = function (_View) {
 
     _createClass(CategoriasConveniosView, [{
         key: 'template',
-        value: function template(model) {
-
-            return '\n            <ul>\n                ' + model.categorias.map(function (categoria) {
-                return '\n                <li class="categoriasConveniosItem" id="convenioCategoria' + StringHelper.ucWordsSanitizeRemoverEspacosEmBranco(categoria.CATEGORIA) + '" onclick="conveniosController.listarConveniosPorCategoria(' + categoria.ID + ')">' + categoria.CATEGORIA + '</li>\n                ';
-            }).join('') + '\n            </ul>\n        ';
+        value: function template(modelo) {
+            console.log(modelo.categorias);
+            return '\n            <div class="col-md-10 col-lg-offset-1 categorias">\n                <h1>Selecione uma categoria</h1><br/><br/><br/>\n                ' + modelo.categorias.map(function (categoria) {
+                return '                \n                <a class="et-hero-tab linkCategoria" data-categoria="' + categoria.ID + '" href="#cat_convenios"><div class="col-md-2 cat_conv" id="categoriaConvenio' + StringHelper.ucWordsSanitizeRemoverEspacosEmBranco(categoria.CATEGORIA) + '">' + categoria.CATEGORIA + '</div></a>\n                ';
+            }).join('') + '                \n            </div>         \n        ';
         }
     }]);
 
