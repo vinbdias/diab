@@ -25,6 +25,25 @@ class SimuladorController {
         );        
     }
 
+    reset() {
+
+        this._inputComprasInternet.val('');
+        this._inputCustosEducacao.val('');
+        this._inputCustosFarmacia.val('');
+        this._inputCustosLazer.val('');
+        
+        if(this._divResultadoSimulador.css('display') === 'block') {
+
+            this._divResultadoSimulador.fadeOut(1000, () => {
+
+                this._divCamposSimulador.fadeIn(1000);
+                this._botaoEnviar.fadeIn(1000);
+                this._spanTextoDescubra.fadeIn(1000);
+                this._spanTextoInforme.fadeIn(1000);                
+            });
+        }
+    }
+
     _capturarKeyUpInputs() {
 
         this._inputComprasInternet.on('keyup', e => this._formatarValorComprasInternet(e));
@@ -90,6 +109,6 @@ class SimuladorController {
         this._divCamposSimulador.fadeOut(1000);
         this._botaoEnviar.fadeOut(1000);
         this._spanTextoDescubra.fadeOut(1000);
-        this._spanTextoInforme.fadeOut(1000, () =>this._divResultadoSimulador.fadeIn(1500));
+        this._spanTextoInforme.fadeOut(1000, () => this._divResultadoSimulador.fadeIn(1500));
     }
 }

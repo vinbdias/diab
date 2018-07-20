@@ -12,6 +12,9 @@ var QuizController = function () {
 
         this._quiz = new Bind(new Quiz(), new QuizView($('#quizView')), 'perguntas');
         this._quiz.perguntas = this._quiz.getPerguntas();
+
+        this._inputRespostas = $('.inputRespostaQuiz');
+
         this._quiz.perfis = this._quiz.getPerfis();
 
         this._resultadoQuiz = new Bind(new ResultadoQuiz(), new ResultadoQuizView($('#resultadoQuizView')), 'resultado');
@@ -57,6 +60,31 @@ var QuizController = function () {
                     toolbarButtonPosition: 'end'
                 }
             });
+        }
+    }, {
+        key: 'reset',
+        value: function reset() {
+
+            this._resetRespostas();
+            this._jQuerySmartWizardReset();
+            this._resultadoQuiz.resultado = undefined;
+        }
+    }, {
+        key: '_resetRespostas',
+        value: function _resetRespostas() {
+
+            this._inputRespostas.each(function () {
+
+                $(this).prop('checked', false);
+            });
+        }
+    }, {
+        key: '_jQuerySmartWizardReset',
+        value: function _jQuerySmartWizardReset() {
+
+            $('#smartwizard').smartWizard('reset');
+
+            return true;
         }
     }, {
         key: '_submeterRespostas',

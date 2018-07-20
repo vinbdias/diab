@@ -9,7 +9,7 @@ class QuizView extends View {
             <div class="col-md-10 col-lg-offset-1 pergunta" id="pergunta${pergunta.numero}">
                 ${pergunta.opcoes.map(opcao => `
                 <div class="radio">
-                    <input type="radio" name="pergunta${pergunta.numero}" id="pergunta${pergunta.numero}Opcao${opcao.rotulo}" value="${opcao.rotulo}">
+                    <input class="inputRespostaQuiz" type="radio" name="pergunta${pergunta.numero}" id="pergunta${pergunta.numero}Opcao${opcao.rotulo}" value="${opcao.rotulo}">
                     <label for="pergunta${pergunta.numero}Opcao${opcao.rotulo}">
                     &nbsp;${opcao.textoOpcao}
                     </label>

@@ -311,7 +311,7 @@
                     <a class="et-hero-tab" href="#home">
                         <img src="img/logo.png">
                     </a>
-                    <a class="et-hero-tab" href="#home">
+                    <a class="et-hero-tab botaoVoltarParaOInicio" href="#home">
                         <h2>
                             <img src="img/bt_inicio.png">
                         </h2>
@@ -377,7 +377,7 @@
                     <a class="et-hero-tab" href="#home">
                         <img src="img/logo.png">
                     </a>
-                    <a class="et-hero-tab" href="#home">
+                    <a class="et-hero-tab botaoVoltarParaOInicio" href="#home">
                         <h2>
                             <img src="img/bt_inicio.png">
                         </h2>
@@ -436,7 +436,7 @@
                     <a class="et-hero-tab" href="#home">
                         <img src="img/logo.png">
                     </a>
-                    <a class="et-hero-tab" href="#home">
+                    <a class="et-hero-tab botaoVoltarParaOInicio" href="#home">
                         <h2>
                             <img src="img/bt_inicio.png">
                         </h2>
@@ -486,7 +486,7 @@
                     <a class="et-hero-tab" href="#home">
                         <img src="img/logo.png">
                     </a>
-                    <a class="et-hero-tab" href="#home">
+                    <a class="et-hero-tab botaoVoltarParaOInicio" href="#home">
                         <h2>
                             <img src="img/bt_inicio.png">
                         </h2>
@@ -527,7 +527,7 @@
                     <a class="et-hero-tab" href="#home">
                         <img src="img/logo.png">
                     </a>
-                    <a class="et-hero-tab" href="#home">
+                    <a class="et-hero-tab botaoVoltarParaOInicio" href="#home">
                         <h2>
                             <img src="img/bt_inicio.png">
                         </h2>
@@ -596,11 +596,17 @@
             quizController.jQuerySmartWizard();
 
             var simuladorController = new SimuladorController();
+            var conveniosController = new ConveniosController();
 
             new StickyNavigation();
 
-        });
-        var conveniosController = new ConveniosController();
+            $('.botaoVoltarParaOInicio').on('click', function() {  
+                
+                quizController.reset();
+                simuladorController.reset();
+                conveniosController.reset();
+            });
+        });        
     </script>
 
 

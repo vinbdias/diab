@@ -22,6 +22,14 @@ var ConveniosController = function () {
     }
 
     _createClass(ConveniosController, [{
+        key: 'reset',
+        value: function reset() {
+
+            this._convenio.convenio = undefined;
+            this._listaConvenios.convenios = [];
+            this._tituloCategoriaListaConvenios.html('');
+        }
+    }, {
         key: '_capturarClickCategoria',
         value: function _capturarClickCategoria() {
 

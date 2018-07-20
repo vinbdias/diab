@@ -28,37 +28,58 @@ var SimuladorController = function () {
     }
 
     _createClass(SimuladorController, [{
-        key: '_capturarKeyUpInputs',
-        value: function _capturarKeyUpInputs() {
+        key: 'reset',
+        value: function reset() {
             var _this = this;
 
+            this._inputComprasInternet.val('');
+            this._inputCustosEducacao.val('');
+            this._inputCustosFarmacia.val('');
+            this._inputCustosLazer.val('');
+
+            if (this._divResultadoSimulador.css('display') === 'block') {
+
+                this._divResultadoSimulador.fadeOut(1000, function () {
+
+                    _this._divCamposSimulador.fadeIn(1000);
+                    _this._botaoEnviar.fadeIn(1000);
+                    _this._spanTextoDescubra.fadeIn(1000);
+                    _this._spanTextoInforme.fadeIn(1000);
+                });
+            }
+        }
+    }, {
+        key: '_capturarKeyUpInputs',
+        value: function _capturarKeyUpInputs() {
+            var _this2 = this;
+
             this._inputComprasInternet.on('keyup', function (e) {
-                return _this._formatarValorComprasInternet(e);
+                return _this2._formatarValorComprasInternet(e);
             });
 
             this._inputCustosEducacao.on('keyup', function (e) {
-                return _this._formatarValorCustosEducacao(e);
+                return _this2._formatarValorCustosEducacao(e);
             });
 
             this._inputCustosFarmacia.on('keyup', function (e) {
-                return _this._formatarValorCustosFarmacia(e);
+                return _this2._formatarValorCustosFarmacia(e);
             });
 
             this._inputCustosLazer.on('keyup', function (e) {
-                return _this._formatarValorCustosLazer(e);
+                return _this2._formatarValorCustosLazer(e);
             });
         }
     }, {
         key: '_capturarClickBotao',
         value: function _capturarClickBotao() {
-            var _this2 = this;
+            var _this3 = this;
 
             this._botaoEnviar.on('click', function (e) {
 
                 e.preventDefault();
 
-                _this2._calcularEconomia();
-                _this2._esconderInputsExibirResultado();
+                _this3._calcularEconomia();
+                _this3._esconderInputsExibirResultado();
             });
         }
     }, {
@@ -102,13 +123,13 @@ var SimuladorController = function () {
     }, {
         key: '_esconderInputsExibirResultado',
         value: function _esconderInputsExibirResultado() {
-            var _this3 = this;
+            var _this4 = this;
 
             this._divCamposSimulador.fadeOut(1000);
             this._botaoEnviar.fadeOut(1000);
             this._spanTextoDescubra.fadeOut(1000);
             this._spanTextoInforme.fadeOut(1000, function () {
-                return _this3._divResultadoSimulador.fadeIn(1500);
+                return _this4._divResultadoSimulador.fadeIn(1500);
             });
         }
     }]);

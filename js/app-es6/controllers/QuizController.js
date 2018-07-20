@@ -10,6 +10,9 @@ class QuizController {
             'perguntas'
         );
         this._quiz.perguntas = this._quiz.getPerguntas();
+
+        this._inputRespostas = $('.inputRespostaQuiz');
+
         this._quiz.perfis = this._quiz.getPerfis();
         
 
@@ -67,6 +70,28 @@ class QuizController {
         });
 
         
+    }
+
+    reset() {
+
+        this._resetRespostas();
+        this._jQuerySmartWizardReset();
+        this._resultadoQuiz.resultado = undefined;
+    }
+
+    _resetRespostas() {
+
+        this._inputRespostas.each(function() {
+
+            $(this).prop('checked', false);
+        });        
+    }
+
+    _jQuerySmartWizardReset() {
+        
+        $('#smartwizard').smartWizard('reset');
+
+        return true;
     }
 
     _submeterRespostas() {        

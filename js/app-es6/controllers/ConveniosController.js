@@ -25,6 +25,13 @@ class ConveniosController {
         this._capturarClickBotaoVoltarParaCategorias();
     }
 
+    reset() {
+        
+        this._convenio.convenio = undefined;
+        this._listaConvenios.convenios = [];
+        this._tituloCategoriaListaConvenios.html('');
+    }
+
     _capturarClickCategoria() {
 
         const acaoClickCategoria = this._listarConveniosPorCategoria.bind(this);
