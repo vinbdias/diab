@@ -29,4 +29,14 @@ class ConveniosService extends HttpService {
                 .catch(() => reject('Não foi possível obter o convênio.'));
         });          
     }
+
+    gravarAcessoConvenio(convenioId) {
+        
+        return new Promise((resolve, reject) => {
+
+            this.post(`https://www.anajustra.org.br/api/diab/gravaConvenioAcesso.php`, {
+                convenioId
+            });
+        });
+    }
 }

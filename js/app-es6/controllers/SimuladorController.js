@@ -17,6 +17,7 @@ class SimuladorController {
         this._capturarKeyUpInputs();
 
         this._simulador = new Simulador();
+        this._simuladorService = new SimuladorService();
 
         this._resultadoSimulador = new Bind(
             new ResultadoSimulador(),
@@ -61,9 +62,23 @@ class SimuladorController {
 
             e.preventDefault();
 
-            this._calcularEconomia();
-            this._esconderInputsExibirResultado();
+            if(this._validar()) {
+
+                this._calcularEconomia();
+                this._esconderInputsExibirResultado();
+            }
         });
+    }
+
+    _validar() {
+
+        if(!this._inputComprasInternet.val() ||
+           !this._inputCustosEducacao.val() ||
+           !this._inputCustosFarmacia.val() ||
+           !this._inputCustosLazer.val())
+           return false;
+
+        return true;
     }
 
     _formatarValorComprasInternet(event) {
@@ -96,12 +111,17 @@ class SimuladorController {
 
     _calcularEconomia() {        
 
-        this._resultadoSimulador.resultado = this._simulador.calcularEconomia(NumeroHelper.parseBRLToFloat(this._inputComprasInternet.val()),
-                                                        NumeroHelper.parseBRLToFloat(this._inputCustosEducacao.val()),
-                                                        NumeroHelper.parseBRLToFloat(this._inputCustosFarmacia.val()),
-                                                        NumeroHelper.parseBRLToFloat(this._inputCustosLazer.val()));  
-                                                        
-    
+        let comprasInternet = NumeroHelper.parseBRLToFloat(this._inputComprasInternet.val()),
+            custosEducacao = NumeroHelper.parseBRLToFloat(this._inputCustosEducacao.val()),
+            custosFarmacia = NumeroHelper.parseBRLToFloat(this._inputCustosFarmacia.val()),
+            custosLazer = NumeroHelper.parseBRLToFloat(this._inputCustosLazer.val());
+
+        this._resultadoSimulador.resultado = this._simulador.calcularEconomia(comprasInternet, custosEducacao,
+                                                                              custosFarmacia, custosLazer);  
+
+        this._simuladorService.gravarSimulacao(this._resultadoSimulador.resultado, 
+                                               comprasInternet, custosEducacao,
+                                               custosFarmacia, custosLazer);                                                
     }
 
     _esconderInputsExibirResultado() {

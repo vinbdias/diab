@@ -9,6 +9,9 @@ class QuizController {
             new QuizView($('#quizView')),
             'perguntas'
         );
+
+        this._divSmartWizard = $('#smartwizard');
+
         this._quiz.perguntas = this._quiz.getPerguntas();
 
         this._inputRespostas = $('.inputRespostaQuiz');
@@ -27,7 +30,7 @@ class QuizController {
 
     jQuerySmartWizard() {             
 
-        $('#smartwizard').on('leaveStep', function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
+        this._divSmartWizard.on('leaveStep', (e, anchorObject, stepNumber, stepDirection, stepPosition) => {
 
             if(stepDirection == 'forward') {
 
@@ -43,9 +46,9 @@ class QuizController {
             }
             
             return true;
-        }.bind(this));
+        });
 
-        $('#smartwizard').on('showStep', function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
+        this._divSmartWizard.on('showStep', function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
 
             if(stepPosition === 'first')  
                 $('#prev-btn').addClass('disabled');
@@ -59,14 +62,12 @@ class QuizController {
                 }
         });
 
-        $('#smartwizard').smartWizard({
+        this._divSmartWizard.smartWizard({
                 selected: 0,
                 theme: 'default',
                 transitionEffect:'fade',
                 showStepURLhash: false,
-                toolbarSettings: {toolbarPosition: 'both',
-                                    toolbarButtonPosition: 'end',
-                                }
+                toolbarSettings: { toolbarPosition: 'both', toolbarButtonPosition: 'end'}
         });
 
         
@@ -89,7 +90,7 @@ class QuizController {
 
     _jQuerySmartWizardReset() {
         
-        $('#smartwizard').smartWizard('reset');
+        this._divSmartWizard.smartWizard('reset');
 
         return true;
     }
@@ -118,9 +119,16 @@ class QuizController {
         else
             respostas = ["A", "B", "C", "C", "D", "A", "D", "D", "A", "A"];    
         
-        this._resultadoQuiz.resultado = this._quiz.calcularResultadoQuiz(respostas);        
+        this._resultadoQuiz.resultado = this._quiz.calcularResultadoQuiz(respostas);  
+        
+        this._capturarClickBotaoRefazer();
 
         this._quizService.gravarQuiz(respostas, this._resultadoQuiz.resultado);              
+    }
+
+    _capturarClickBotaoRefazer() {
+
+        $('#botaoRefazerQuiz').on('click', () => this.reset());
     }
 
     _validarQuiz() {

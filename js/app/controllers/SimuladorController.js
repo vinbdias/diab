@@ -23,6 +23,7 @@ var SimuladorController = function () {
         this._capturarKeyUpInputs();
 
         this._simulador = new Simulador();
+        this._simuladorService = new SimuladorService();
 
         this._resultadoSimulador = new Bind(new ResultadoSimulador(), new ResultadoSimuladorView($('#resultadoSimuladorView')), 'resultado');
     }
@@ -78,9 +79,20 @@ var SimuladorController = function () {
 
                 e.preventDefault();
 
-                _this3._calcularEconomia();
-                _this3._esconderInputsExibirResultado();
+                if (_this3._validar()) {
+
+                    _this3._calcularEconomia();
+                    _this3._esconderInputsExibirResultado();
+                }
             });
+        }
+    }, {
+        key: '_validar',
+        value: function _validar() {
+
+            if (!this._inputComprasInternet.val() || !this._inputCustosEducacao.val() || !this._inputCustosFarmacia.val() || !this._inputCustosLazer.val()) return false;
+
+            return true;
         }
     }, {
         key: '_formatarValorComprasInternet',
@@ -118,7 +130,14 @@ var SimuladorController = function () {
         key: '_calcularEconomia',
         value: function _calcularEconomia() {
 
-            this._resultadoSimulador.resultado = this._simulador.calcularEconomia(NumeroHelper.parseBRLToFloat(this._inputComprasInternet.val()), NumeroHelper.parseBRLToFloat(this._inputCustosEducacao.val()), NumeroHelper.parseBRLToFloat(this._inputCustosFarmacia.val()), NumeroHelper.parseBRLToFloat(this._inputCustosLazer.val()));
+            var comprasInternet = NumeroHelper.parseBRLToFloat(this._inputComprasInternet.val()),
+                custosEducacao = NumeroHelper.parseBRLToFloat(this._inputCustosEducacao.val()),
+                custosFarmacia = NumeroHelper.parseBRLToFloat(this._inputCustosFarmacia.val()),
+                custosLazer = NumeroHelper.parseBRLToFloat(this._inputCustosLazer.val());
+
+            this._resultadoSimulador.resultado = this._simulador.calcularEconomia(comprasInternet, custosEducacao, custosFarmacia, custosLazer);
+
+            this._simuladorService.gravarSimulacao(this._resultadoSimulador.resultado, comprasInternet, custosEducacao, custosFarmacia, custosLazer);
         }
     }, {
         key: '_esconderInputsExibirResultado',

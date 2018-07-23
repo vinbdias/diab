@@ -11,6 +11,9 @@ var QuizController = function () {
         this._teste = false;
 
         this._quiz = new Bind(new Quiz(), new QuizView($('#quizView')), 'perguntas');
+
+        this._divSmartWizard = $('#smartwizard');
+
         this._quiz.perguntas = this._quiz.getPerguntas();
 
         this._inputRespostas = $('.inputRespostaQuiz');
@@ -25,24 +28,25 @@ var QuizController = function () {
     _createClass(QuizController, [{
         key: 'jQuerySmartWizard',
         value: function jQuerySmartWizard() {
+            var _this = this;
 
-            $('#smartwizard').on('leaveStep', function (e, anchorObject, stepNumber, stepDirection, stepPosition) {
+            this._divSmartWizard.on('leaveStep', function (e, anchorObject, stepNumber, stepDirection, stepPosition) {
 
                 if (stepDirection == 'forward') {
 
                     var numeroPergunta = stepNumber + 1;
-                    if (this._validarResposta(numeroPergunta)) {
+                    if (_this._validarResposta(numeroPergunta)) {
 
-                        if (numeroPergunta == 10) this._submeterRespostas();
+                        if (numeroPergunta == 10) _this._submeterRespostas();
 
                         return true;
                     } else return false;
                 }
 
                 return true;
-            }.bind(this));
+            });
 
-            $('#smartwizard').on('showStep', function (e, anchorObject, stepNumber, stepDirection, stepPosition) {
+            this._divSmartWizard.on('showStep', function (e, anchorObject, stepNumber, stepDirection, stepPosition) {
 
                 if (stepPosition === 'first') $('#prev-btn').addClass('disabled');else if (stepPosition === 'final') $("#next-btn").addClass('disabled');else {
 
@@ -51,14 +55,12 @@ var QuizController = function () {
                 }
             });
 
-            $('#smartwizard').smartWizard({
+            this._divSmartWizard.smartWizard({
                 selected: 0,
                 theme: 'default',
                 transitionEffect: 'fade',
                 showStepURLhash: false,
-                toolbarSettings: { toolbarPosition: 'both',
-                    toolbarButtonPosition: 'end'
-                }
+                toolbarSettings: { toolbarPosition: 'both', toolbarButtonPosition: 'end' }
             });
         }
     }, {
@@ -82,7 +84,7 @@ var QuizController = function () {
         key: '_jQuerySmartWizardReset',
         value: function _jQuerySmartWizardReset() {
 
-            $('#smartwizard').smartWizard('reset');
+            this._divSmartWizard.smartWizard('reset');
 
             return true;
         }
@@ -101,7 +103,18 @@ var QuizController = function () {
 
             this._resultadoQuiz.resultado = this._quiz.calcularResultadoQuiz(respostas);
 
+            this._capturarClickBotaoRefazer();
+
             this._quizService.gravarQuiz(respostas, this._resultadoQuiz.resultado);
+        }
+    }, {
+        key: '_capturarClickBotaoRefazer',
+        value: function _capturarClickBotaoRefazer() {
+            var _this2 = this;
+
+            $('#botaoRefazerQuiz').on('click', function () {
+                return _this2.reset();
+            });
         }
     }, {
         key: '_validarQuiz',

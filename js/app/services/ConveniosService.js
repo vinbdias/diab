@@ -59,6 +59,18 @@ var ConveniosService = function (_HttpService) {
                 });
             });
         }
+    }, {
+        key: 'gravarAcessoConvenio',
+        value: function gravarAcessoConvenio(convenioId) {
+            var _this5 = this;
+
+            return new Promise(function (resolve, reject) {
+
+                _this5.post('https://www.anajustra.org.br/api/diab/gravaConvenioAcesso.php', {
+                    convenioId: convenioId
+                });
+            });
+        }
     }]);
 
     return ConveniosService;

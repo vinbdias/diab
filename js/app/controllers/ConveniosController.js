@@ -10,6 +10,8 @@ var ConveniosController = function () {
 
         this._categoriaConvenio = new CategoriaConvenio();
 
+        this._conveniosService = new ConveniosService();
+
         this._listaConvenios = new Bind(new ListaConvenios(), new ConveniosView($('#conveniosView')), 'convenios');
 
         this._convenio = new Bind(new Convenio(), new ConvenioView($('#convenioView')), 'convenio');
@@ -91,6 +93,8 @@ var ConveniosController = function () {
         value: function _mostrarConvenio(convenioId) {
 
             this._convenio.convenio = this._convenio.getConvenioPorId(convenioId);
+
+            this._conveniosService.gravarAcessoConvenio(convenioId);
 
             this._capturarClickBotaoVoltarParaConvenios();
         }
