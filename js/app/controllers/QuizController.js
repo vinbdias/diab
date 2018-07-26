@@ -99,7 +99,7 @@ var QuizController = function () {
                 this._obterRespostas();
 
                 respostas = [this._inputPergunta1.val(), this._inputPergunta2.val(), this._inputPergunta3.val(), this._inputPergunta4.val(), this._inputPergunta5.val(), this._inputPergunta6.val(), this._inputPergunta7.val(), this._inputPergunta8.val(), this._inputPergunta9.val(), this._inputPergunta10.val()];
-            } else respostas = ["A", "B", "C", "C", "D", "A", "D", "D", "A", "A"];
+            } else respostas = ["4", "4", "3", "2", "2", "3", "4", "4", "3", "2"];
 
             this._resultadoQuiz.resultado = this._quiz.calcularResultadoQuiz(respostas);
 

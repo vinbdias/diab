@@ -16,7 +16,8 @@ class ResultadoSimuladorView extends View {
                 <span>${modelo.resultado.totalDesconto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</span> por mês<br/>
                 e <span>${(modelo.resultado.totalDesconto*12).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</span> por ano
             </div>
-        </div>                
+        </div>
+        <p style="font-size:18px;margin-top:530px">* Para efeito de simulação foram considerados os descontos médios em cada categoria. Os descontos devem ser aplicados conforme divulgados no site da ANAJUSTRA.</p>                            
         ` : ``;
     }
 }

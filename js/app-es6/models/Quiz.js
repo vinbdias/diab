@@ -3,11 +3,15 @@ class Quiz {
     constructor() {
 
         this._respostas = [];
+        this._perguntas = [];
     }
 
     set perguntas(perguntas) {
 
-        this._perguntas = perguntas;
+        if(Array.isArray(perguntas))
+            this._perguntas = [].concat(perguntas);
+        else  
+            this._perguntas = perguntas;
     }
 
     get perguntas() {
@@ -17,13 +21,23 @@ class Quiz {
 
     set perfis(perfis) {
 
-        this._perfis = perfis;
+        this._perfis = [].concat(perfis);
     }
 
     get perfis() {
 
         return this._perfis;
     }
+
+    set respostas(respostas) {
+
+        this._respostas = [].concat(respostas);
+    }
+    
+    get respostas() {
+
+        return this._respostas;
+    }    
 
     calcularResultadoQuiz(respostas) {
                     
@@ -65,17 +79,16 @@ class Quiz {
         return resultadoQuiz;            
     }
 
-    _calcularPontuacao(respostas) {
+    _calcularPontuacao() {
 
-        let valores = [];
-        this._respostas.forEach((rotuloResposta, indice) => {
+        let valores = [];        
+
+        this._respostas.forEach((idResposta, indice) => {
             
-            let opcaoResposta = this._perguntas[indice].opcoes.find(opcao => {
+            valores.push(this._perguntas[indice].opcoes.find(opcao => {
                 
-                return opcao.rotulo == rotuloResposta;
-            });
-
-            valores.push(opcaoResposta.valor);           
+                return opcao.id == idResposta;
+            }).valor);                 
         });
 
         return valores.reduce((acumulador, valor) => acumulador + valor);
@@ -83,31 +96,24 @@ class Quiz {
 
     getPerguntas() {
 
-        return PerguntasDataSource.getPerguntas();
+        let perguntas = this._embaralharOpcoes(PerguntasDataSource.getPerguntas());
+        
+        return perguntas;
+    }
+
+    _embaralharOpcoes(perguntas) {
+
+        const opcoesRotulos = ['A', 'B', 'C', 'D'];
+        
+        perguntas.forEach((pergunta, indicePergunta) =>
+                    ArrayHelper.shuffle(pergunta.opcoes).forEach((opcao, indiceOpcao) =>
+                                                            opcao.rotulo = opcoesRotulos[indiceOpcao]));     
+        
+        return perguntas;
     }
 
     getPerfis() {
 
         return PerfisDataSource.getPerfis();
-    }
-
-    get perfis() {
-
-        return this._perfis;
-    }
-
-    get perguntas() {
-
-        return this._perguntas;
-    }
-
-    get respostas() {
-
-        return this._respostas;
-    }
-
-    set respostas(respostas) {
-
-        this._respostas = [].concat(respostas);
     }
 }

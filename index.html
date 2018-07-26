@@ -232,7 +232,7 @@
         }
 
         .img-conv {
-            margin: 5% 0 0 25%;
+            margin: 7% 0 0 20%;
             width: 120px;
             height: auto;
         }
@@ -254,6 +254,11 @@
         .botao_simulador {
 
             margin-top: 40px;
+        }
+
+        .botaoVoltarParaOInicio:hover {
+
+            cursor: pointer;
         }
     </style>
 </head>
@@ -313,7 +318,7 @@
         <section class="et-slide" id="quiz">
             <div class="row">
                 <div class="col-md-2 logo">
-                    <a class="et-hero-tab" href="#home">
+                    <a class="et-hero-tab botaoVoltarParaOInicio" href="#home">
                         <img src="img/logo.png">
                     </a>
                     <a class="et-hero-tab botaoVoltarParaOInicio" href="#home">
@@ -379,7 +384,7 @@
         <section class="et-slide" id="simulador">
             <div class="row">
                 <div class="col-md-2 logo">
-                    <a class="et-hero-tab" href="#home">
+                    <a class="et-hero-tab botaoVoltarParaOInicio" href="#home">
                         <img src="img/logo.png">
                     </a>
                     <a class="et-hero-tab botaoVoltarParaOInicio" href="#home">
@@ -438,7 +443,7 @@
         <section class="et-slide" id="convenios">
             <div class="row">
                 <div class="col-md-2 logo">
-                    <a class="et-hero-tab" href="#home">
+                    <a class="et-hero-tab botaoVoltarParaOInicio" href="#home">
                         <img src="img/logo.png">
                     </a>
                     <a class="et-hero-tab botaoVoltarParaOInicio" href="#home">
@@ -488,7 +493,7 @@
         <section class="et-slide" id="cat_convenios">
             <div class="row">
                 <div class="col-md-2 logo">
-                    <a class="et-hero-tab" href="#home">
+                    <a class="et-hero-tab botaoVoltarParaOInicio" href="#home">
                         <img src="img/logo.png">
                     </a>
                     <a class="et-hero-tab botaoVoltarParaOInicio" href="#home">
@@ -529,8 +534,8 @@
         <section class="et-slide" id="mostra_convenio">
             <div class="row">
                 <div class="col-md-2 logo">
-                    <a class="et-hero-tab" href="#home">
-                        <img src="img/logo.png">
+                    <a class="et-hero-tab botaoVoltarParaOInicio" href="#home">
+                        <img src="img/logo.png" href="#home">
                     </a>
                     <a class="et-hero-tab botaoVoltarParaOInicio" href="#home">
                         <h2>
@@ -575,6 +580,7 @@
     <script type="text/javascript" src="js/app/services/SimuladorService.js"></script>
     <script type="text/javascript" src="js/app/services/ConveniosService.js"></script>
     <script type="text/javascript" src="js/app/helpers/Bind.js"></script>
+    <script type="text/javascript" src="js/app/helpers/ArrayHelper.js"></script>
     <script type="text/javascript" src="js/app/helpers/NumeroHelper.js"></script>
     <script type="text/javascript" src="js/app/helpers/StringHelper.js"></script>
     <script type="text/javascript" src="js/app/models/Quiz.js"></script>
@@ -605,13 +611,14 @@
             var simuladorController = new SimuladorController();
             var conveniosController = new ConveniosController();
 
-            new StickyNavigation();
+            new StickyNavigation();         
 
-            $('.botaoVoltarParaOInicio').on('click', function() {  
+            $('.botaoVoltarParaOInicio').on('click', function(e) {  
                 
-                quizController.reset();
-                simuladorController.reset();
-                conveniosController.reset();
+                window.setTimeout(function() {
+
+                    $(location).attr('href', 'index.html');
+                }, 500);
             });
         });        
     </script>

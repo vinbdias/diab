@@ -74,11 +74,12 @@ class QuizController {
     }
 
     reset() {
-
+        
         this._resetRespostas();
         this._jQuerySmartWizardReset();
-        this._resultadoQuiz.resultado = undefined;
+        this._resultadoQuiz.resultado = undefined;         
     }
+    
 
     _resetRespostas() {
 
@@ -117,7 +118,8 @@ class QuizController {
             ];
         }
         else
-            respostas = ["A", "B", "C", "C", "D", "A", "D", "D", "A", "A"];    
+            respostas = ["4", "4", "3", "2", "2", "3", "4", "4", "3", "2"];    
+        
         
         this._resultadoQuiz.resultado = this._quiz.calcularResultadoQuiz(respostas);  
         

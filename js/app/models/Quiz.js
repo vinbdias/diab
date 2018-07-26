@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -9,10 +9,11 @@ var Quiz = function () {
         _classCallCheck(this, Quiz);
 
         this._respostas = [];
+        this._perguntas = [];
     }
 
     _createClass(Quiz, [{
-        key: "calcularResultadoQuiz",
+        key: 'calcularResultadoQuiz',
         value: function calcularResultadoQuiz(respostas) {
 
             this._respostas = respostas;
@@ -51,19 +52,18 @@ var Quiz = function () {
             return resultadoQuiz;
         }
     }, {
-        key: "_calcularPontuacao",
-        value: function _calcularPontuacao(respostas) {
+        key: '_calcularPontuacao',
+        value: function _calcularPontuacao() {
             var _this = this;
 
             var valores = [];
-            this._respostas.forEach(function (rotuloResposta, indice) {
 
-                var opcaoResposta = _this._perguntas[indice].opcoes.find(function (opcao) {
+            this._respostas.forEach(function (idResposta, indice) {
 
-                    return opcao.rotulo == rotuloResposta;
-                });
+                valores.push(_this._perguntas[indice].opcoes.find(function (opcao) {
 
-                valores.push(opcaoResposta.valor);
+                    return opcao.id == idResposta;
+                }).valor);
             });
 
             return valores.reduce(function (acumulador, valor) {
@@ -71,46 +71,62 @@ var Quiz = function () {
             });
         }
     }, {
-        key: "getPerguntas",
+        key: 'getPerguntas',
         value: function getPerguntas() {
 
-            return PerguntasDataSource.getPerguntas();
+            var perguntas = this._embaralharOpcoes(PerguntasDataSource.getPerguntas());
+
+            return perguntas;
         }
     }, {
-        key: "getPerfis",
+        key: '_embaralharOpcoes',
+        value: function _embaralharOpcoes(perguntas) {
+
+            var opcoesRotulos = ['A', 'B', 'C', 'D'];
+
+            perguntas.forEach(function (pergunta, indicePergunta) {
+                return ArrayHelper.shuffle(pergunta.opcoes).forEach(function (opcao, indiceOpcao) {
+                    return opcao.rotulo = opcoesRotulos[indiceOpcao];
+                });
+            });
+
+            return perguntas;
+        }
+    }, {
+        key: 'getPerfis',
         value: function getPerfis() {
 
             return PerfisDataSource.getPerfis();
         }
     }, {
-        key: "perguntas",
+        key: 'perguntas',
         set: function set(perguntas) {
 
-            this._perguntas = perguntas;
+            if (Array.isArray(perguntas)) this._perguntas = [].concat(perguntas);else this._perguntas = perguntas;
         },
         get: function get() {
 
             return this._perguntas;
         }
     }, {
-        key: "perfis",
+        key: 'perfis',
         set: function set(perfis) {
 
-            this._perfis = perfis;
+            this._perfis = [].concat(perfis);
         },
         get: function get() {
 
             return this._perfis;
         }
     }, {
-        key: "respostas",
-        get: function get() {
-
-            return this._respostas;
-        },
+        key: 'respostas',
         set: function set(respostas) {
 
             this._respostas = [].concat(respostas);
+        },
+        get: function get() {
+
+            return this._respostas;
         }
     }]);
 
